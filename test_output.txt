@@ -1,0 +1,3024 @@
+\[OKAY] Loaded ENV .env_test File as KEY=VALUE Format
+===================================================================================================== test session starts =====================================================================================================
+platform darwin -- Python 2.7.10 -- py-1.4.31 -- pytest-2.7.0 -- /Users/jessealdridge/venvs/gigwalk_back/bin/python
+rootdir: /Users/jessealdridge/Dropbox/gigwalk/apps/gigwalk_apps_platform_api, inifile: pytest.ini
+plugins: cov, flask
+collecting 0 itemsSQLALCHEMY_TEST_DATABASE_URI: postgres://localhost/gigwalk2_test
+SQLAchemy echo: OFF
+Connecting to MongoDB mongodb://localhost/gigwalk_apps_1...
+Done connecting to MongoDB
+Loaded Rabbitmq BROKER_USE_SSL from .env file, current value is False when default value should be True for PROD.
+collected 12 items
+
+tests/unit/gigwalk_api_app/tickets/controllers/test_ticket_controller.py::TestTicketController::test_get_tickets /Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/sqlalchemy/orm/session.py:2014: SAWarning: Usage of the 'collection append' operation is not currently supported within the execution stage of the flush process. Results may not be consistent.  Consider using alternative event listeners or connection-level operations instead.
+  % method)
+/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/sqlalchemy/orm/session.py:2014: SAWarning: Usage of the 'Session.add()' operation is not currently supported within the execution stage of the flush process. Results may not be consistent.  Consider using alternative event listeners or connection-level operations instead.
+  % method)
+INFO:tasks.ticket.create_tickets_from_subscription_task:START
+INFO:tasks.ticket.create_tickets_from_subscription_task:STARTING AUTO ASSIGN
+INFO:tasks.ticket.create_tickets_from_subscription_task:STARTING AUTO ASSIGN
+INFO:tasks.ticket.create_tickets_from_subscription_task:created_ticket_ids are [225, 226]
+INFO:tasks.ticket.create_tickets_from_subscription_task:END
+INFO:tasks.ticket.create_tickets_from_subscription_task:START
+INFO:tasks.ticket.create_tickets_from_subscription_task:STARTING AUTO ASSIGN
+INFO:tasks.ticket.create_tickets_from_subscription_task:STARTING AUTO ASSIGN
+INFO:tasks.ticket.create_tickets_from_subscription_task:created_ticket_ids are [227, 228]
+INFO:tasks.ticket.create_tickets_from_subscription_task:END
+
+======================
+GET http://localhost/v1/tickets/228
+====== HEADERS =======
+Authorization: Basic V09SS0VSX0FtYXpvbkBnaWd3YWxrLmNvbTptb25rZXl0ZXN0
+Host: localhost
+Content-Length: 0
+Content-Type:
+======================
+Resource --> TicketAPIResource
+url args --> {}
+====== ALL DATA ======
+{}
+=== Method Schemas ===
+PUT: None
+POST: _GeoSchema
+DELETE: None
+GET: None
+======= SEARCH =======
+limit  --> 20
+offset --> 0
+order  --> None ASC
+query  -->
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+CORS have been already evaluated, skipping
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:CORS have been already evaluated, skipping
+
+======================
+GET http://localhost/v1/tickets/226
+====== HEADERS =======
+Authorization: Basic V09SS0VSX0FtYXpvbkBnaWd3YWxrLmNvbTptb25rZXl0ZXN0
+Host: localhost
+Content-Length: 0
+Content-Type:
+======================
+Resource --> TicketAPIResource
+url args --> {}
+====== ALL DATA ======
+{}
+=== Method Schemas ===
+PUT: None
+POST: _GeoSchema
+DELETE: None
+GET: None
+======= SEARCH =======
+limit  --> 20
+offset --> 0
+order  --> None ASC
+query  -->
+Filename: /Users/jessealdridge/Dropbox/gigwalk/apps/gigwalk_apps_platform_api/gigwalk_api_app/lib/gigwalk_resource.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   222    108.8 MiB      0.0 MiB       @memory_profiler.profile
+   223                                 def dispatch_request(self, *args, **kwargs):
+   224                                     """
+   225                                     Overriding function from Flask-RESTful
+   226                                     """
+   227                                     # Taken from flask
+   228                                     # noinspection PyUnresolvedReferences
+   229    108.8 MiB      0.0 MiB           meth = getattr(self, self.method.lower(), None)
+   230    108.8 MiB      0.0 MiB           if meth is None and self.method == 'HEAD':
+   231                                         meth = getattr(self, 'get', None)
+   232    108.8 MiB      0.0 MiB           assert meth is not None, 'Unimplemented method %r' % self.method
+   233
+   234    108.8 MiB      0.0 MiB           for decorator in self.method_decorators:
+   235    108.8 MiB      0.0 MiB               if isinstance(decorator, tuple):
+   236    108.8 MiB      0.0 MiB                   if not '!' + self.method in decorator[1]:
+   237    108.8 MiB      0.0 MiB                       meth = decorator[0](meth)
+   238                                         else:
+   239    108.8 MiB      0.0 MiB                   meth = decorator(meth)
+   240
+   241    109.9 MiB      1.1 MiB           resp = meth(*args, **kwargs)
+   242
+   243    109.9 MiB      0.0 MiB           if isinstance(resp, Response):  # There may be a better way to test
+   244                                         return resp
+   245
+   246    109.9 MiB      0.0 MiB           representations = self.representations or {}
+   247
+   248                                     # noinspection PyUnresolvedReferences
+   249    109.9 MiB      0.0 MiB           for mediatype in self.mediatypes():
+   250    109.9 MiB      0.0 MiB               if mediatype in representations:
+   251                                             data, code, headers = unpack(resp)
+   252                                             resp = representations[mediatype](data, code, headers)
+   253                                             resp.headers['Content-Type'] = mediatype
+   254                                             return resp
+   255
+   256    109.9 MiB      0.0 MiB           return resp
+
+
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Request to '/v1/tickets/226' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Request to '/v1/tickets/226' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Settings CORS headers: MultiDict([])
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Settings CORS headers: MultiDict([])
+INFO:tasks.ticket.autoassign.autoassign_task:START
+INFO:tasks.ticket.autoassign.autoassign_task:TICKET {ticket_id} REQUIREMENTS {reqs}
+INFO:tasks.ticket.autoassign.autoassign_task:TICKET {ticket_id} EXCLUDE WORKERS {optout_customer}
+DEBUG:tasks.ticket.autoassign.autoassign_task:TICKET {ticket_id}, FIRST 10 candidates: {ids}
+INFO:tasks.ticket.autoassign.autoassign_task:TICKET {ticket_id} CANDIDATE COUNT {candidates_count}
+INFO:tasks.ticket.autoassign.autoassign_task:TICKET {ticket_id} EMPTY RESULT for query: {sql}
+INFO:tasks.ticket.autoassign.autoassign_task:END
+
+======================
+GET http://localhost/v1/tickets/225
+====== HEADERS =======
+Authorization: Basic V09SS0VSX0FtYXpvbkBnaWd3YWxrLmNvbTptb25rZXl0ZXN0
+Host: localhost
+Content-Length: 0
+Content-Type:
+======================
+Resource --> TicketAPIResource
+url args --> {}
+====== ALL DATA ======
+{}
+=== Method Schemas ===
+PUT: None
+POST: _GeoSchema
+DELETE: None
+GET: None
+======= SEARCH =======
+limit  --> 20
+offset --> 0
+order  --> None ASC
+query  -->
+Filename: /Users/jessealdridge/Dropbox/gigwalk/apps/gigwalk_apps_platform_api/gigwalk_api_app/lib/gigwalk_resource.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   222    110.2 MiB      0.0 MiB       @memory_profiler.profile
+   223                                 def dispatch_request(self, *args, **kwargs):
+   224                                     """
+   225                                     Overriding function from Flask-RESTful
+   226                                     """
+   227                                     # Taken from flask
+   228                                     # noinspection PyUnresolvedReferences
+   229    110.2 MiB      0.0 MiB           meth = getattr(self, self.method.lower(), None)
+   230    110.2 MiB      0.0 MiB           if meth is None and self.method == 'HEAD':
+   231                                         meth = getattr(self, 'get', None)
+   232    110.2 MiB      0.0 MiB           assert meth is not None, 'Unimplemented method %r' % self.method
+   233
+   234    110.2 MiB      0.0 MiB           for decorator in self.method_decorators:
+   235    110.2 MiB     -0.0 MiB               if isinstance(decorator, tuple):
+   236    110.2 MiB      0.0 MiB                   if not '!' + self.method in decorator[1]:
+   237    110.2 MiB      0.0 MiB                       meth = decorator[0](meth)
+   238                                         else:
+   239    110.2 MiB     -0.0 MiB                   meth = decorator(meth)
+   240
+   241    110.8 MiB      0.6 MiB           resp = meth(*args, **kwargs)
+   242
+   243    110.8 MiB      0.0 MiB           if isinstance(resp, Response):  # There may be a better way to test
+   244                                         return resp
+   245
+   246    110.8 MiB      0.0 MiB           representations = self.representations or {}
+   247
+   248                                     # noinspection PyUnresolvedReferences
+   249    110.8 MiB      0.0 MiB           for mediatype in self.mediatypes():
+   250    110.8 MiB      0.0 MiB               if mediatype in representations:
+   251                                             data, code, headers = unpack(resp)
+   252                                             resp = representations[mediatype](data, code, headers)
+   253                                             resp.headers['Content-Type'] = mediatype
+   254                                             return resp
+   255
+   256    110.8 MiB      0.0 MiB           return resp
+
+
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Request to '/v1/tickets/225' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Request to '/v1/tickets/225' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Settings CORS headers: MultiDict([])
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Settings CORS headers: MultiDict([])
+
+======================
+GET http://localhost/v1/tickets
+====== HEADERS =======
+Authorization: Basic V09SS0VSX0FtYXpvbkBnaWd3YWxrLmNvbTptb25rZXl0ZXN0
+Host: localhost
+Content-Length: 0
+Content-Type:
+======================
+Resource --> TicketAPIResource
+url args --> {}
+====== ALL DATA ======
+{}
+=== Method Schemas ===
+PUT: None
+POST: _GeoSchema
+DELETE: None
+GET: None
+======= SEARCH =======
+limit  --> 20
+offset --> 0
+order  --> None ASC
+query  -->
+Filename: /Users/jessealdridge/Dropbox/gigwalk/apps/gigwalk_apps_platform_api/gigwalk_api_app/lib/gigwalk_resource.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   222    110.8 MiB      0.0 MiB       @memory_profiler.profile
+   223                                 def dispatch_request(self, *args, **kwargs):
+   224                                     """
+   225                                     Overriding function from Flask-RESTful
+   226                                     """
+   227                                     # Taken from flask
+   228                                     # noinspection PyUnresolvedReferences
+   229    110.8 MiB      0.0 MiB           meth = getattr(self, self.method.lower(), None)
+   230    110.8 MiB      0.0 MiB           if meth is None and self.method == 'HEAD':
+   231                                         meth = getattr(self, 'get', None)
+   232    110.8 MiB      0.0 MiB           assert meth is not None, 'Unimplemented method %r' % self.method
+   233
+   234    110.8 MiB      0.0 MiB           for decorator in self.method_decorators:
+   235    110.8 MiB      0.0 MiB               if isinstance(decorator, tuple):
+   236    110.8 MiB      0.0 MiB                   if not '!' + self.method in decorator[1]:
+   237    110.8 MiB      0.0 MiB                       meth = decorator[0](meth)
+   238                                         else:
+   239    110.8 MiB      0.0 MiB                   meth = decorator(meth)
+   240
+   241    111.6 MiB      0.8 MiB           resp = meth(*args, **kwargs)
+   242
+   243    111.6 MiB      0.0 MiB           if isinstance(resp, Response):  # There may be a better way to test
+   244                                         return resp
+   245
+   246    111.6 MiB      0.0 MiB           representations = self.representations or {}
+   247
+   248                                     # noinspection PyUnresolvedReferences
+   249    111.6 MiB      0.0 MiB           for mediatype in self.mediatypes():
+   250    111.6 MiB      0.0 MiB               if mediatype in representations:
+   251                                             data, code, headers = unpack(resp)
+   252                                             resp = representations[mediatype](data, code, headers)
+   253                                             resp.headers['Content-Type'] = mediatype
+   254                                             return resp
+   255
+   256    111.6 MiB      0.0 MiB           return resp
+
+
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Request to '/v1/tickets' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Request to '/v1/tickets' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Settings CORS headers: MultiDict([])
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Settings CORS headers: MultiDict([])
+INFO:tasks.ticket.autoassign.autoassign_task:START
+INFO:tasks.ticket.autoassign.autoassign_task:TICKET {ticket_id} REQUIREMENTS {reqs}
+INFO:tasks.ticket.autoassign.autoassign_task:TICKET {ticket_id} EXCLUDE WORKERS {optout_customer}
+DEBUG:tasks.ticket.autoassign.autoassign_task:TICKET {ticket_id}, FIRST 10 candidates: {ids}
+INFO:tasks.ticket.autoassign.autoassign_task:TICKET {ticket_id} CANDIDATE COUNT {candidates_count}
+DEBUG:tasks.ticket.autoassign.autoassign_task:TICKET {ticket_id} SOFT
+INFO:tasks.ticket.autoassign.autoassign_task:TICKET {ticket_id} ASSIGNED to {candidate}
+INFO:tasks.ticket.autoassign.autoassign_task:END
+
+======================
+GET http://localhost/v1/tickets
+====== HEADERS =======
+Authorization: Basic V09SS0VSX0FtYXpvbl8xQGdpZ3dhbGsuY29tOm1vbmtleXRlc3Q=
+Host: localhost
+Content-Length: 0
+Content-Type:
+======================
+Resource --> TicketAPIResource
+url args --> {}
+====== ALL DATA ======
+{}
+=== Method Schemas ===
+PUT: None
+POST: _GeoSchema
+DELETE: None
+GET: None
+======= SEARCH =======
+limit  --> 20
+offset --> 0
+order  --> None ASC
+query  -->
+Filename: /Users/jessealdridge/Dropbox/gigwalk/apps/gigwalk_apps_platform_api/gigwalk_api_app/lib/gigwalk_resource.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   222    113.0 MiB      0.0 MiB       @memory_profiler.profile
+   223                                 def dispatch_request(self, *args, **kwargs):
+   224                                     """
+   225                                     Overriding function from Flask-RESTful
+   226                                     """
+   227                                     # Taken from flask
+   228                                     # noinspection PyUnresolvedReferences
+   229    113.0 MiB      0.0 MiB           meth = getattr(self, self.method.lower(), None)
+   230    113.0 MiB      0.0 MiB           if meth is None and self.method == 'HEAD':
+   231                                         meth = getattr(self, 'get', None)
+   232    113.0 MiB      0.0 MiB           assert meth is not None, 'Unimplemented method %r' % self.method
+   233
+   234    113.0 MiB      0.0 MiB           for decorator in self.method_decorators:
+   235    113.0 MiB      0.0 MiB               if isinstance(decorator, tuple):
+   236    113.0 MiB      0.0 MiB                   if not '!' + self.method in decorator[1]:
+   237    113.0 MiB      0.0 MiB                       meth = decorator[0](meth)
+   238                                         else:
+   239    113.0 MiB      0.0 MiB                   meth = decorator(meth)
+   240
+   241    113.8 MiB      0.8 MiB           resp = meth(*args, **kwargs)
+   242
+   243    113.8 MiB      0.0 MiB           if isinstance(resp, Response):  # There may be a better way to test
+   244                                         return resp
+   245
+   246    113.8 MiB      0.0 MiB           representations = self.representations or {}
+   247
+   248                                     # noinspection PyUnresolvedReferences
+   249    113.8 MiB      0.0 MiB           for mediatype in self.mediatypes():
+   250    113.8 MiB      0.0 MiB               if mediatype in representations:
+   251                                             data, code, headers = unpack(resp)
+   252                                             resp = representations[mediatype](data, code, headers)
+   253                                             resp.headers['Content-Type'] = mediatype
+   254                                             return resp
+   255
+   256    113.8 MiB      0.0 MiB           return resp
+
+
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Request to '/v1/tickets' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Request to '/v1/tickets' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Settings CORS headers: MultiDict([])
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Settings CORS headers: MultiDict([])
+PASSEDModels:  []
+
+tests/unit/gigwalk_api_app/tickets/controllers/test_ticket_controller.py::TestTicketController::test_valid_reservation_minutes
+======================
+GET http://localhost/v1/tickets/223
+====== HEADERS =======
+Authorization: Basic U1VQRVJfQURNSU5fQ3Jvc3NtYXJrQGdpZ3dhbGsuY29tOm1vbmtleXRlc3Q=
+Host: localhost
+Content-Length: 0
+Content-Type:
+======================
+Resource --> TicketAPIResource
+url args --> {}
+====== ALL DATA ======
+{}
+=== Method Schemas ===
+PUT: None
+POST: _GeoSchema
+DELETE: None
+GET: None
+======= SEARCH =======
+limit  --> 20
+offset --> 0
+order  --> None ASC
+query  -->
+Filename: /Users/jessealdridge/Dropbox/gigwalk/apps/gigwalk_apps_platform_api/gigwalk_api_app/lib/gigwalk_resource.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   222    114.0 MiB      0.0 MiB       @memory_profiler.profile
+   223                                 def dispatch_request(self, *args, **kwargs):
+   224                                     """
+   225                                     Overriding function from Flask-RESTful
+   226                                     """
+   227                                     # Taken from flask
+   228                                     # noinspection PyUnresolvedReferences
+   229    114.0 MiB      0.0 MiB           meth = getattr(self, self.method.lower(), None)
+   230    114.0 MiB      0.0 MiB           if meth is None and self.method == 'HEAD':
+   231                                         meth = getattr(self, 'get', None)
+   232    114.0 MiB      0.0 MiB           assert meth is not None, 'Unimplemented method %r' % self.method
+   233
+   234    114.0 MiB      0.0 MiB           for decorator in self.method_decorators:
+   235    114.0 MiB      0.0 MiB               if isinstance(decorator, tuple):
+   236    114.0 MiB      0.0 MiB                   if not '!' + self.method in decorator[1]:
+   237    114.0 MiB      0.0 MiB                       meth = decorator[0](meth)
+   238                                         else:
+   239    114.0 MiB      0.0 MiB                   meth = decorator(meth)
+   240
+   241    114.1 MiB      0.1 MiB           resp = meth(*args, **kwargs)
+   242
+   243    114.1 MiB      0.0 MiB           if isinstance(resp, Response):  # There may be a better way to test
+   244                                         return resp
+   245
+   246    114.1 MiB      0.0 MiB           representations = self.representations or {}
+   247
+   248                                     # noinspection PyUnresolvedReferences
+   249    114.1 MiB      0.0 MiB           for mediatype in self.mediatypes():
+   250    114.1 MiB      0.0 MiB               if mediatype in representations:
+   251                                             data, code, headers = unpack(resp)
+   252                                             resp = representations[mediatype](data, code, headers)
+   253                                             resp.headers['Content-Type'] = mediatype
+   254                                             return resp
+   255
+   256    114.1 MiB      0.0 MiB           return resp
+
+
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Request to '/v1/tickets/223' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Request to '/v1/tickets/223' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Settings CORS headers: MultiDict([])
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Settings CORS headers: MultiDict([])
+PASSEDModels:  []
+
+tests/unit/gigwalk_api_app/tickets/controllers/test_ticket_controller.py::TestTicketController::test_post_tickets_geo
+======================
+POST http://localhost/v1/tickets/search
+====== HEADERS =======
+Authorization: Basic U1VQRVJfQURNSU5fQW1hem9uQGdpZ3dhbGsuY29tOm1vbmtleXRlc3Q=
+Host: localhost
+Content-Length: 112
+Content-Type: application/json
+======================
+Resource --> TicketAPIResource
+url args --> {}
+====== ALL DATA ======
+{u'search_type': u'geo', u'latitude': 40.82382972900055, u'radius': 1, u'longitude': -73.96236899999995, u'uom': u'km'}
+=== Method Schemas ===
+PUT: None
+POST: _GeoSchema
+DELETE: None
+GET: None
+======= SEARCH =======
+limit  --> 20
+offset --> 0
+order  --> None ASC
+query  -->
+/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/sqlalchemy/sql/elements.py:3758: SAWarning: Textual SQL expression 'earth_box(ll_to_earth(40....' should be explicitly declared as text('earth_box(ll_to_earth(40....') (this warning may be suppressed after 10 occurrences)
+  {"expr": util.ellipses_string(element)})
+Filename: /Users/jessealdridge/Dropbox/gigwalk/apps/gigwalk_apps_platform_api/gigwalk_api_app/lib/gigwalk_resource.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   222    114.2 MiB      0.0 MiB       @memory_profiler.profile
+   223                                 def dispatch_request(self, *args, **kwargs):
+   224                                     """
+   225                                     Overriding function from Flask-RESTful
+   226                                     """
+   227                                     # Taken from flask
+   228                                     # noinspection PyUnresolvedReferences
+   229    114.2 MiB      0.0 MiB           meth = getattr(self, self.method.lower(), None)
+   230    114.2 MiB      0.0 MiB           if meth is None and self.method == 'HEAD':
+   231                                         meth = getattr(self, 'get', None)
+   232    114.2 MiB      0.0 MiB           assert meth is not None, 'Unimplemented method %r' % self.method
+   233
+   234    114.2 MiB      0.0 MiB           for decorator in self.method_decorators:
+   235    114.2 MiB      0.0 MiB               if isinstance(decorator, tuple):
+   236    114.2 MiB      0.0 MiB                   if not '!' + self.method in decorator[1]:
+   237    114.2 MiB      0.0 MiB                       meth = decorator[0](meth)
+   238                                         else:
+   239    114.2 MiB      0.0 MiB                   meth = decorator(meth)
+   240
+   241    114.6 MiB      0.4 MiB           resp = meth(*args, **kwargs)
+   242
+   243    114.6 MiB      0.0 MiB           if isinstance(resp, Response):  # There may be a better way to test
+   244                                         return resp
+   245
+   246    114.6 MiB      0.0 MiB           representations = self.representations or {}
+   247
+   248                                     # noinspection PyUnresolvedReferences
+   249    114.6 MiB      0.0 MiB           for mediatype in self.mediatypes():
+   250    114.6 MiB      0.0 MiB               if mediatype in representations:
+   251                                             data, code, headers = unpack(resp)
+   252                                             resp = representations[mediatype](data, code, headers)
+   253                                             resp.headers['Content-Type'] = mediatype
+   254                                             return resp
+   255
+   256    114.6 MiB      0.0 MiB           return resp
+
+
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Request to '/v1/tickets/search' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Request to '/v1/tickets/search' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Settings CORS headers: MultiDict([])
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Settings CORS headers: MultiDict([])
+
+======================
+POST http://localhost/v1/tickets/search
+====== HEADERS =======
+Authorization: Basic U1VQRVJfQURNSU5fQW1hem9uQGdpZ3dhbGsuY29tOm1vbmtleXRlc3Q=
+Host: localhost
+Content-Length: 96
+Content-Type: application/json
+======================
+Resource --> TicketAPIResource
+url args --> {}
+====== ALL DATA ======
+{u'search_type': u'geo', u'latitude': 40.778913, u'radius': 5, u'longitude': -73.962369, u'uom': u'km'}
+=== Method Schemas ===
+PUT: None
+POST: _GeoSchema
+DELETE: None
+GET: None
+======= SEARCH =======
+limit  --> 20
+offset --> 0
+order  --> None ASC
+query  -->
+Filename: /Users/jessealdridge/Dropbox/gigwalk/apps/gigwalk_apps_platform_api/gigwalk_api_app/lib/gigwalk_resource.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   222    114.7 MiB      0.0 MiB       @memory_profiler.profile
+   223                                 def dispatch_request(self, *args, **kwargs):
+   224                                     """
+   225                                     Overriding function from Flask-RESTful
+   226                                     """
+   227                                     # Taken from flask
+   228                                     # noinspection PyUnresolvedReferences
+   229    114.7 MiB      0.0 MiB           meth = getattr(self, self.method.lower(), None)
+   230    114.7 MiB      0.0 MiB           if meth is None and self.method == 'HEAD':
+   231                                         meth = getattr(self, 'get', None)
+   232    114.7 MiB      0.0 MiB           assert meth is not None, 'Unimplemented method %r' % self.method
+   233
+   234    114.7 MiB      0.0 MiB           for decorator in self.method_decorators:
+   235    114.7 MiB     -0.0 MiB               if isinstance(decorator, tuple):
+   236    114.7 MiB      0.0 MiB                   if not '!' + self.method in decorator[1]:
+   237    114.7 MiB      0.0 MiB                       meth = decorator[0](meth)
+   238                                         else:
+   239    114.7 MiB     -0.0 MiB                   meth = decorator(meth)
+   240
+   241    115.2 MiB      0.5 MiB           resp = meth(*args, **kwargs)
+   242
+   243    115.2 MiB      0.0 MiB           if isinstance(resp, Response):  # There may be a better way to test
+   244                                         return resp
+   245
+   246    115.2 MiB      0.0 MiB           representations = self.representations or {}
+   247
+   248                                     # noinspection PyUnresolvedReferences
+   249    115.2 MiB      0.0 MiB           for mediatype in self.mediatypes():
+   250    115.2 MiB      0.0 MiB               if mediatype in representations:
+   251                                             data, code, headers = unpack(resp)
+   252                                             resp = representations[mediatype](data, code, headers)
+   253                                             resp.headers['Content-Type'] = mediatype
+   254                                             return resp
+   255
+   256    115.2 MiB      0.0 MiB           return resp
+
+
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Request to '/v1/tickets/search' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Request to '/v1/tickets/search' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Settings CORS headers: MultiDict([])
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Settings CORS headers: MultiDict([])
+PASSEDModels:  []
+
+tests/unit/gigwalk_api_app/tickets/controllers/test_ticket_controller.py::TestTicketController::test_post_tickets_status
+======================
+POST http://localhost/v1/tickets/search
+====== HEADERS =======
+Authorization: Basic U1VQRVJfQURNSU5fQW1hem9uQGdpZ3dhbGsuY29tOm1vbmtleXRlc3Q=
+Host: localhost
+Content-Length: 49
+Content-Type: application/json
+======================
+Resource --> TicketAPIResource
+url args --> {}
+====== ALL DATA ======
+{u'search_type': u'status', u'status': [u'UNASSIGNED']}
+=== Method Schemas ===
+PUT: None
+POST: _StatusSchema
+DELETE: None
+GET: None
+======= SEARCH =======
+limit  --> 20
+offset --> 0
+order  --> None ASC
+query  -->
+Filename: /Users/jessealdridge/Dropbox/gigwalk/apps/gigwalk_apps_platform_api/gigwalk_api_app/lib/gigwalk_resource.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   222    115.3 MiB      0.0 MiB       @memory_profiler.profile
+   223                                 def dispatch_request(self, *args, **kwargs):
+   224                                     """
+   225                                     Overriding function from Flask-RESTful
+   226                                     """
+   227                                     # Taken from flask
+   228                                     # noinspection PyUnresolvedReferences
+   229    115.3 MiB      0.0 MiB           meth = getattr(self, self.method.lower(), None)
+   230    115.3 MiB      0.0 MiB           if meth is None and self.method == 'HEAD':
+   231                                         meth = getattr(self, 'get', None)
+   232    115.3 MiB      0.0 MiB           assert meth is not None, 'Unimplemented method %r' % self.method
+   233
+   234    115.3 MiB      0.0 MiB           for decorator in self.method_decorators:
+   235    115.3 MiB      0.0 MiB               if isinstance(decorator, tuple):
+   236    115.3 MiB      0.0 MiB                   if not '!' + self.method in decorator[1]:
+   237    115.3 MiB      0.0 MiB                       meth = decorator[0](meth)
+   238                                         else:
+   239    115.3 MiB      0.0 MiB                   meth = decorator(meth)
+   240
+   241    115.5 MiB      0.2 MiB           resp = meth(*args, **kwargs)
+   242
+   243    115.5 MiB      0.0 MiB           if isinstance(resp, Response):  # There may be a better way to test
+   244                                         return resp
+   245
+   246    115.5 MiB      0.0 MiB           representations = self.representations or {}
+   247
+   248                                     # noinspection PyUnresolvedReferences
+   249    115.5 MiB      0.0 MiB           for mediatype in self.mediatypes():
+   250    115.5 MiB      0.0 MiB               if mediatype in representations:
+   251                                             data, code, headers = unpack(resp)
+   252                                             resp = representations[mediatype](data, code, headers)
+   253                                             resp.headers['Content-Type'] = mediatype
+   254                                             return resp
+   255
+   256    115.5 MiB      0.0 MiB           return resp
+
+
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Request to '/v1/tickets/search' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Request to '/v1/tickets/search' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Settings CORS headers: MultiDict([])
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Settings CORS headers: MultiDict([])
+
+======================
+POST http://localhost/v1/tickets/search
+====== HEADERS =======
+Authorization: Basic V09SS0VSX1BlcHNpQGdpZ3dhbGsuY29tOm1vbmtleXRlc3Q=
+Host: localhost
+Content-Length: 47
+Content-Type: application/json
+======================
+Resource --> TicketAPIResource
+url args --> {}
+====== ALL DATA ======
+{u'search_type': u'status', u'status': [u'ASSIGNED']}
+=== Method Schemas ===
+PUT: None
+POST: _StatusSchema
+DELETE: None
+GET: None
+======= SEARCH =======
+limit  --> 20
+offset --> 0
+order  --> None ASC
+query  -->
+Filename: /Users/jessealdridge/Dropbox/gigwalk/apps/gigwalk_apps_platform_api/gigwalk_api_app/lib/gigwalk_resource.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   222    115.7 MiB      0.0 MiB       @memory_profiler.profile
+   223                                 def dispatch_request(self, *args, **kwargs):
+   224                                     """
+   225                                     Overriding function from Flask-RESTful
+   226                                     """
+   227                                     # Taken from flask
+   228                                     # noinspection PyUnresolvedReferences
+   229    115.7 MiB      0.0 MiB           meth = getattr(self, self.method.lower(), None)
+   230    115.7 MiB      0.0 MiB           if meth is None and self.method == 'HEAD':
+   231                                         meth = getattr(self, 'get', None)
+   232    115.7 MiB      0.0 MiB           assert meth is not None, 'Unimplemented method %r' % self.method
+   233
+   234    115.7 MiB      0.0 MiB           for decorator in self.method_decorators:
+   235    115.7 MiB      0.0 MiB               if isinstance(decorator, tuple):
+   236    115.7 MiB      0.0 MiB                   if not '!' + self.method in decorator[1]:
+   237    115.7 MiB      0.0 MiB                       meth = decorator[0](meth)
+   238                                         else:
+   239    115.7 MiB      0.0 MiB                   meth = decorator(meth)
+   240
+   241    116.2 MiB      0.5 MiB           resp = meth(*args, **kwargs)
+   242
+   243    116.2 MiB      0.0 MiB           if isinstance(resp, Response):  # There may be a better way to test
+   244                                         return resp
+   245
+   246    116.2 MiB      0.0 MiB           representations = self.representations or {}
+   247
+   248                                     # noinspection PyUnresolvedReferences
+   249    116.2 MiB      0.0 MiB           for mediatype in self.mediatypes():
+   250    116.2 MiB      0.0 MiB               if mediatype in representations:
+   251                                             data, code, headers = unpack(resp)
+   252                                             resp = representations[mediatype](data, code, headers)
+   253                                             resp.headers['Content-Type'] = mediatype
+   254                                             return resp
+   255
+   256    116.2 MiB      0.0 MiB           return resp
+
+
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Request to '/v1/tickets/search' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Request to '/v1/tickets/search' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Settings CORS headers: MultiDict([])
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Settings CORS headers: MultiDict([])
+PASSEDModels:  []
+
+tests/unit/gigwalk_api_app/tickets/controllers/test_ticket_controller.py::TestTicketController::test_post_tickets_date_range
+======================
+POST http://localhost/v1/tickets/search
+====== HEADERS =======
+Authorization: Basic U1VQRVJfQURNSU5fQW1hem9uQGdpZ3dhbGsuY29tOm1vbmtleXRlc3Q=
+Host: localhost
+Content-Length: 130
+Content-Type: application/json
+======================
+Resource --> TicketAPIResource
+url args --> {}
+====== ALL DATA ======
+{u'search_type': u'date_range', u'date_type': u'date_created', u'start_date': u'2014-08-18 23:27:23', u'end_date': u'2014-08-18 23:27:24'}
+=== Method Schemas ===
+PUT: None
+POST: _DateRangeSchema
+DELETE: None
+GET: None
+======= SEARCH =======
+limit  --> 20
+offset --> 0
+order  --> None ASC
+query  -->
+Filename: /Users/jessealdridge/Dropbox/gigwalk/apps/gigwalk_apps_platform_api/gigwalk_api_app/lib/gigwalk_resource.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   222    116.5 MiB      0.0 MiB       @memory_profiler.profile
+   223                                 def dispatch_request(self, *args, **kwargs):
+   224                                     """
+   225                                     Overriding function from Flask-RESTful
+   226                                     """
+   227                                     # Taken from flask
+   228                                     # noinspection PyUnresolvedReferences
+   229    116.5 MiB      0.0 MiB           meth = getattr(self, self.method.lower(), None)
+   230    116.5 MiB      0.0 MiB           if meth is None and self.method == 'HEAD':
+   231                                         meth = getattr(self, 'get', None)
+   232    116.5 MiB      0.0 MiB           assert meth is not None, 'Unimplemented method %r' % self.method
+   233
+   234    116.5 MiB      0.0 MiB           for decorator in self.method_decorators:
+   235    116.5 MiB      0.0 MiB               if isinstance(decorator, tuple):
+   236    116.5 MiB      0.0 MiB                   if not '!' + self.method in decorator[1]:
+   237    116.5 MiB      0.0 MiB                       meth = decorator[0](meth)
+   238                                         else:
+   239    116.5 MiB      0.0 MiB                   meth = decorator(meth)
+   240
+   241    117.4 MiB      0.9 MiB           resp = meth(*args, **kwargs)
+   242
+   243    117.4 MiB      0.0 MiB           if isinstance(resp, Response):  # There may be a better way to test
+   244                                         return resp
+   245
+   246    117.4 MiB      0.0 MiB           representations = self.representations or {}
+   247
+   248                                     # noinspection PyUnresolvedReferences
+   249    117.4 MiB      0.0 MiB           for mediatype in self.mediatypes():
+   250    117.4 MiB      0.0 MiB               if mediatype in representations:
+   251                                             data, code, headers = unpack(resp)
+   252                                             resp = representations[mediatype](data, code, headers)
+   253                                             resp.headers['Content-Type'] = mediatype
+   254                                             return resp
+   255
+   256    117.4 MiB      0.0 MiB           return resp
+
+
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Request to '/v1/tickets/search' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Request to '/v1/tickets/search' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Settings CORS headers: MultiDict([])
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Settings CORS headers: MultiDict([])
+
+======================
+POST http://localhost/v1/tickets/search
+====== HEADERS =======
+Authorization: Basic U1VQRVJfQURNSU5fQW1hem9uQGdpZ3dhbGsuY29tOm1vbmtleXRlc3Q=
+Host: localhost
+Content-Length: 128
+Content-Type: application/json
+======================
+Resource --> TicketAPIResource
+url args --> {}
+====== ALL DATA ======
+{u'search_type': u'date_range', u'date_type': u'start_date', u'start_date': u'2014-08-18 23:27:23', u'end_date': u'2016-08-18 23:27:24'}
+=== Method Schemas ===
+PUT: None
+POST: _DateRangeSchema
+DELETE: None
+GET: None
+======= SEARCH =======
+limit  --> 20
+offset --> 0
+order  --> None ASC
+query  -->
+Filename: /Users/jessealdridge/Dropbox/gigwalk/apps/gigwalk_apps_platform_api/gigwalk_api_app/lib/gigwalk_resource.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   222    117.5 MiB      0.0 MiB       @memory_profiler.profile
+   223                                 def dispatch_request(self, *args, **kwargs):
+   224                                     """
+   225                                     Overriding function from Flask-RESTful
+   226                                     """
+   227                                     # Taken from flask
+   228                                     # noinspection PyUnresolvedReferences
+   229    117.5 MiB      0.0 MiB           meth = getattr(self, self.method.lower(), None)
+   230    117.5 MiB      0.0 MiB           if meth is None and self.method == 'HEAD':
+   231                                         meth = getattr(self, 'get', None)
+   232    117.5 MiB      0.0 MiB           assert meth is not None, 'Unimplemented method %r' % self.method
+   233
+   234    117.5 MiB      0.0 MiB           for decorator in self.method_decorators:
+   235    117.5 MiB      0.0 MiB               if isinstance(decorator, tuple):
+   236    117.5 MiB      0.0 MiB                   if not '!' + self.method in decorator[1]:
+   237    117.5 MiB      0.0 MiB                       meth = decorator[0](meth)
+   238                                         else:
+   239    117.5 MiB      0.0 MiB                   meth = decorator(meth)
+   240
+   241    117.7 MiB      0.1 MiB           resp = meth(*args, **kwargs)
+   242
+   243    117.7 MiB      0.0 MiB           if isinstance(resp, Response):  # There may be a better way to test
+   244                                         return resp
+   245
+   246    117.7 MiB      0.0 MiB           representations = self.representations or {}
+   247
+   248                                     # noinspection PyUnresolvedReferences
+   249    117.7 MiB      0.0 MiB           for mediatype in self.mediatypes():
+   250    117.7 MiB      0.0 MiB               if mediatype in representations:
+   251                                             data, code, headers = unpack(resp)
+   252                                             resp = representations[mediatype](data, code, headers)
+   253                                             resp.headers['Content-Type'] = mediatype
+   254                                             return resp
+   255
+   256    117.7 MiB      0.0 MiB           return resp
+
+
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Request to '/v1/tickets/search' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Request to '/v1/tickets/search' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Settings CORS headers: MultiDict([])
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Settings CORS headers: MultiDict([])
+PASSEDModels:  []
+
+tests/unit/gigwalk_api_app/tickets/controllers/test_ticket_controller.py::TestTicketController::test_post_tickets_status_date_range
+======================
+POST http://localhost/v1/tickets/search
+====== HEADERS =======
+Authorization: Basic U1VQRVJfQURNSU5fQW1hem9uQGdpZ3dhbGsuY29tOm1vbmtleXRlc3Q=
+Host: localhost
+Content-Length: 157
+Content-Type: application/json
+======================
+Resource --> TicketAPIResource
+url args --> {}
+====== ALL DATA ======
+{u'search_type': u'status_date_range', u'status': [u'ASSIGNED'], u'date_type': u'start_date', u'start_date': u'2014-08-18 23:27:23', u'end_date': u'2016-08-18 23:27:24'}
+=== Method Schemas ===
+PUT: None
+POST: _StatusDateRangeSchema
+DELETE: None
+GET: None
+======= SEARCH =======
+limit  --> 20
+offset --> 0
+order  --> None ASC
+query  -->
+Filename: /Users/jessealdridge/Dropbox/gigwalk/apps/gigwalk_apps_platform_api/gigwalk_api_app/lib/gigwalk_resource.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   222    118.3 MiB      0.0 MiB       @memory_profiler.profile
+   223                                 def dispatch_request(self, *args, **kwargs):
+   224                                     """
+   225                                     Overriding function from Flask-RESTful
+   226                                     """
+   227                                     # Taken from flask
+   228                                     # noinspection PyUnresolvedReferences
+   229    118.3 MiB      0.0 MiB           meth = getattr(self, self.method.lower(), None)
+   230    118.3 MiB      0.0 MiB           if meth is None and self.method == 'HEAD':
+   231                                         meth = getattr(self, 'get', None)
+   232    118.3 MiB      0.0 MiB           assert meth is not None, 'Unimplemented method %r' % self.method
+   233
+   234    118.3 MiB      0.0 MiB           for decorator in self.method_decorators:
+   235    118.3 MiB      0.0 MiB               if isinstance(decorator, tuple):
+   236    118.3 MiB      0.0 MiB                   if not '!' + self.method in decorator[1]:
+   237    118.3 MiB      0.0 MiB                       meth = decorator[0](meth)
+   238                                         else:
+   239    118.3 MiB      0.0 MiB                   meth = decorator(meth)
+   240
+   241    118.7 MiB      0.4 MiB           resp = meth(*args, **kwargs)
+   242
+   243    118.7 MiB      0.0 MiB           if isinstance(resp, Response):  # There may be a better way to test
+   244                                         return resp
+   245
+   246    118.7 MiB      0.0 MiB           representations = self.representations or {}
+   247
+   248                                     # noinspection PyUnresolvedReferences
+   249    118.7 MiB      0.0 MiB           for mediatype in self.mediatypes():
+   250    118.7 MiB      0.0 MiB               if mediatype in representations:
+   251                                             data, code, headers = unpack(resp)
+   252                                             resp = representations[mediatype](data, code, headers)
+   253                                             resp.headers['Content-Type'] = mediatype
+   254                                             return resp
+   255
+   256    118.7 MiB      0.0 MiB           return resp
+
+
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Request to '/v1/tickets/search' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Request to '/v1/tickets/search' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Settings CORS headers: MultiDict([])
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Settings CORS headers: MultiDict([])
+
+======================
+POST http://localhost/v1/tickets/search
+====== HEADERS =======
+Authorization: Basic U1VQRVJfQURNSU5fQW1hem9uQGdpZ3dhbGsuY29tOm1vbmtleXRlc3Q=
+Host: localhost
+Content-Length: 161
+Content-Type: application/json
+======================
+Resource --> TicketAPIResource
+url args --> {}
+====== ALL DATA ======
+{u'search_type': u'status_date_range', u'status': [u'UNASSIGNED'], u'date_type': u'date_created', u'start_date': u'2014-08-18 23:27:23', u'end_date': u'2016-08-18 23:27:24'}
+=== Method Schemas ===
+PUT: None
+POST: _StatusDateRangeSchema
+DELETE: None
+GET: None
+======= SEARCH =======
+limit  --> 20
+offset --> 0
+order  --> None ASC
+query  -->
+Filename: /Users/jessealdridge/Dropbox/gigwalk/apps/gigwalk_apps_platform_api/gigwalk_api_app/lib/gigwalk_resource.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   222    118.9 MiB      0.0 MiB       @memory_profiler.profile
+   223                                 def dispatch_request(self, *args, **kwargs):
+   224                                     """
+   225                                     Overriding function from Flask-RESTful
+   226                                     """
+   227                                     # Taken from flask
+   228                                     # noinspection PyUnresolvedReferences
+   229    118.9 MiB      0.0 MiB           meth = getattr(self, self.method.lower(), None)
+   230    118.9 MiB      0.0 MiB           if meth is None and self.method == 'HEAD':
+   231                                         meth = getattr(self, 'get', None)
+   232    118.9 MiB      0.0 MiB           assert meth is not None, 'Unimplemented method %r' % self.method
+   233
+   234    118.9 MiB      0.0 MiB           for decorator in self.method_decorators:
+   235    118.9 MiB      0.0 MiB               if isinstance(decorator, tuple):
+   236    118.9 MiB      0.0 MiB                   if not '!' + self.method in decorator[1]:
+   237    118.9 MiB      0.0 MiB                       meth = decorator[0](meth)
+   238                                         else:
+   239    118.9 MiB      0.0 MiB                   meth = decorator(meth)
+   240
+   241    118.9 MiB      0.0 MiB           resp = meth(*args, **kwargs)
+   242
+   243    118.9 MiB      0.0 MiB           if isinstance(resp, Response):  # There may be a better way to test
+   244                                         return resp
+   245
+   246    118.9 MiB      0.0 MiB           representations = self.representations or {}
+   247
+   248                                     # noinspection PyUnresolvedReferences
+   249    118.9 MiB      0.0 MiB           for mediatype in self.mediatypes():
+   250    118.9 MiB      0.0 MiB               if mediatype in representations:
+   251                                             data, code, headers = unpack(resp)
+   252                                             resp = representations[mediatype](data, code, headers)
+   253                                             resp.headers['Content-Type'] = mediatype
+   254                                             return resp
+   255
+   256    118.9 MiB      0.0 MiB           return resp
+
+
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Request to '/v1/tickets/search' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Request to '/v1/tickets/search' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Settings CORS headers: MultiDict([])
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Settings CORS headers: MultiDict([])
+PASSEDModels:  []
+
+tests/unit/gigwalk_api_app/tickets/controllers/test_ticket_controller.py::TestTicketController::test_post_tickets_status_n_days
+======================
+POST http://localhost/v1/tickets/search
+====== HEADERS =======
+Authorization: Basic U1VQRVJfQURNSU5fQW1hem9uQGdpZ3dhbGsuY29tOm1vbmtleXRlc3Q=
+Host: localhost
+Content-Length: 99
+Content-Type: application/json
+======================
+Resource --> TicketAPIResource
+url args --> {}
+====== ALL DATA ======
+{u'search_type': u'status_n_days', u'status': [u'UNASSIGNED'], u'date_type': u'date_created', u'n_days': 40}
+=== Method Schemas ===
+PUT: None
+POST: _StatusNDaysSchema
+DELETE: None
+GET: None
+======= SEARCH =======
+limit  --> 20
+offset --> 0
+order  --> None ASC
+query  -->
+Filename: /Users/jessealdridge/Dropbox/gigwalk/apps/gigwalk_apps_platform_api/gigwalk_api_app/lib/gigwalk_resource.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   222    118.9 MiB      0.0 MiB       @memory_profiler.profile
+   223                                 def dispatch_request(self, *args, **kwargs):
+   224                                     """
+   225                                     Overriding function from Flask-RESTful
+   226                                     """
+   227                                     # Taken from flask
+   228                                     # noinspection PyUnresolvedReferences
+   229    118.9 MiB      0.0 MiB           meth = getattr(self, self.method.lower(), None)
+   230    118.9 MiB      0.0 MiB           if meth is None and self.method == 'HEAD':
+   231                                         meth = getattr(self, 'get', None)
+   232    118.9 MiB      0.0 MiB           assert meth is not None, 'Unimplemented method %r' % self.method
+   233
+   234    118.9 MiB      0.0 MiB           for decorator in self.method_decorators:
+   235    118.9 MiB      0.0 MiB               if isinstance(decorator, tuple):
+   236    118.9 MiB      0.0 MiB                   if not '!' + self.method in decorator[1]:
+   237    118.9 MiB      0.0 MiB                       meth = decorator[0](meth)
+   238                                         else:
+   239    118.9 MiB      0.0 MiB                   meth = decorator(meth)
+   240
+   241    118.9 MiB      0.0 MiB           resp = meth(*args, **kwargs)
+   242
+   243    118.9 MiB      0.0 MiB           if isinstance(resp, Response):  # There may be a better way to test
+   244                                         return resp
+   245
+   246    118.9 MiB      0.0 MiB           representations = self.representations or {}
+   247
+   248                                     # noinspection PyUnresolvedReferences
+   249    118.9 MiB      0.0 MiB           for mediatype in self.mediatypes():
+   250    118.9 MiB      0.0 MiB               if mediatype in representations:
+   251                                             data, code, headers = unpack(resp)
+   252                                             resp = representations[mediatype](data, code, headers)
+   253                                             resp.headers['Content-Type'] = mediatype
+   254                                             return resp
+   255
+   256    118.9 MiB      0.0 MiB           return resp
+
+
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Request to '/v1/tickets/search' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Request to '/v1/tickets/search' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Settings CORS headers: MultiDict([])
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Settings CORS headers: MultiDict([])
+
+======================
+POST http://localhost/v1/tickets/search
+====== HEADERS =======
+Authorization: Basic U1VQRVJfQURNSU5fQW1hem9uQGdpZ3dhbGsuY29tOm1vbmtleXRlc3Q=
+Host: localhost
+Content-Length: 99
+Content-Type: application/json
+======================
+Resource --> TicketAPIResource
+url args --> {}
+====== ALL DATA ======
+{u'search_type': u'status_n_days', u'status': [u'UNASSIGNED'], u'date_type': u'date_created', u'n_days': 40}
+=== Method Schemas ===
+PUT: None
+POST: _StatusNDaysSchema
+DELETE: None
+GET: None
+======= SEARCH =======
+limit  --> 20
+offset --> 0
+order  --> None ASC
+query  -->
+Filename: /Users/jessealdridge/Dropbox/gigwalk/apps/gigwalk_apps_platform_api/gigwalk_api_app/lib/gigwalk_resource.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   222    119.0 MiB      0.0 MiB       @memory_profiler.profile
+   223                                 def dispatch_request(self, *args, **kwargs):
+   224                                     """
+   225                                     Overriding function from Flask-RESTful
+   226                                     """
+   227                                     # Taken from flask
+   228                                     # noinspection PyUnresolvedReferences
+   229    119.0 MiB      0.0 MiB           meth = getattr(self, self.method.lower(), None)
+   230    119.0 MiB      0.0 MiB           if meth is None and self.method == 'HEAD':
+   231                                         meth = getattr(self, 'get', None)
+   232    119.0 MiB      0.0 MiB           assert meth is not None, 'Unimplemented method %r' % self.method
+   233
+   234    119.0 MiB      0.0 MiB           for decorator in self.method_decorators:
+   235    119.0 MiB      0.0 MiB               if isinstance(decorator, tuple):
+   236    119.0 MiB      0.0 MiB                   if not '!' + self.method in decorator[1]:
+   237    119.0 MiB      0.0 MiB                       meth = decorator[0](meth)
+   238                                         else:
+   239    119.0 MiB      0.0 MiB                   meth = decorator(meth)
+   240
+   241    119.0 MiB      0.0 MiB           resp = meth(*args, **kwargs)
+   242
+   243    119.0 MiB      0.0 MiB           if isinstance(resp, Response):  # There may be a better way to test
+   244                                         return resp
+   245
+   246    119.0 MiB      0.0 MiB           representations = self.representations or {}
+   247
+   248                                     # noinspection PyUnresolvedReferences
+   249    119.0 MiB      0.0 MiB           for mediatype in self.mediatypes():
+   250    119.0 MiB      0.0 MiB               if mediatype in representations:
+   251                                             data, code, headers = unpack(resp)
+   252                                             resp = representations[mediatype](data, code, headers)
+   253                                             resp.headers['Content-Type'] = mediatype
+   254                                             return resp
+   255
+   256    119.0 MiB      0.0 MiB           return resp
+
+
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Request to '/v1/tickets/search' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Request to '/v1/tickets/search' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Settings CORS headers: MultiDict([])
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Settings CORS headers: MultiDict([])
+PASSEDModels:  []
+
+tests/unit/gigwalk_api_app/tickets/controllers/test_ticket_controller.py::TestTicketController::test_start_date_range_search_with_status
+======================
+POST http://localhost/v1/tickets/search
+====== HEADERS =======
+Authorization: Basic U1VQRVJfQURNSU5fQW1hem9uQGdpZ3dhbGsuY29tOm1vbmtleXRlc3Q=
+Host: localhost
+Content-Length: 97
+Content-Type: application/json
+======================
+Resource --> TicketAPIResource
+url args --> {}
+====== ALL DATA ======
+{u'search_type': u'status_n_days', u'status': [u'UNASSIGNED'], u'date_type': u'start_date', u'n_days': 40}
+=== Method Schemas ===
+PUT: None
+POST: _StatusNDaysSchema
+DELETE: None
+GET: None
+======= SEARCH =======
+limit  --> 20
+offset --> 0
+order  --> None ASC
+query  -->
+Filename: /Users/jessealdridge/Dropbox/gigwalk/apps/gigwalk_apps_platform_api/gigwalk_api_app/lib/gigwalk_resource.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   222    119.0 MiB      0.0 MiB       @memory_profiler.profile
+   223                                 def dispatch_request(self, *args, **kwargs):
+   224                                     """
+   225                                     Overriding function from Flask-RESTful
+   226                                     """
+   227                                     # Taken from flask
+   228                                     # noinspection PyUnresolvedReferences
+   229    119.0 MiB      0.0 MiB           meth = getattr(self, self.method.lower(), None)
+   230    119.0 MiB      0.0 MiB           if meth is None and self.method == 'HEAD':
+   231                                         meth = getattr(self, 'get', None)
+   232    119.0 MiB      0.0 MiB           assert meth is not None, 'Unimplemented method %r' % self.method
+   233
+   234    119.0 MiB      0.0 MiB           for decorator in self.method_decorators:
+   235    119.0 MiB      0.0 MiB               if isinstance(decorator, tuple):
+   236    119.0 MiB      0.0 MiB                   if not '!' + self.method in decorator[1]:
+   237    119.0 MiB      0.0 MiB                       meth = decorator[0](meth)
+   238                                         else:
+   239    119.0 MiB      0.0 MiB                   meth = decorator(meth)
+   240
+   241    119.0 MiB      0.0 MiB           resp = meth(*args, **kwargs)
+   242
+   243    119.0 MiB      0.0 MiB           if isinstance(resp, Response):  # There may be a better way to test
+   244                                         return resp
+   245
+   246    119.0 MiB      0.0 MiB           representations = self.representations or {}
+   247
+   248                                     # noinspection PyUnresolvedReferences
+   249    119.0 MiB      0.0 MiB           for mediatype in self.mediatypes():
+   250    119.0 MiB      0.0 MiB               if mediatype in representations:
+   251                                             data, code, headers = unpack(resp)
+   252                                             resp = representations[mediatype](data, code, headers)
+   253                                             resp.headers['Content-Type'] = mediatype
+   254                                             return resp
+   255
+   256    119.0 MiB      0.0 MiB           return resp
+
+
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Request to '/v1/tickets/search' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Request to '/v1/tickets/search' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Settings CORS headers: MultiDict([])
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Settings CORS headers: MultiDict([])
+PASSEDModels:  []
+
+tests/unit/gigwalk_api_app/tickets/controllers/test_ticket_controller.py::TestTicketController::test_put_ticket_collection
+======================
+PUT http://localhost/v1/tickets
+====== HEADERS =======
+Authorization: Basic U1VQRVJfQURNSU5fQW1hem9uQGdpZ3dhbGsuY29tOm1vbmtleXRlc3Q=
+Host: localhost
+Content-Length: 61
+Content-Type: application/json
+======================
+Resource --> TicketAPIResource
+url args --> {}
+====== ALL DATA ======
+{u'action': u'edit', u'time_estimate': 150, u'ticket_ids': [220]}
+=== Method Schemas ===
+PUT: None
+POST: _GeoSchema
+DELETE: None
+GET: None
+======= SEARCH =======
+limit  --> 20
+offset --> 0
+order  --> None ASC
+query  -->
+Filename: /Users/jessealdridge/Dropbox/gigwalk/apps/gigwalk_apps_platform_api/gigwalk_api_app/lib/gigwalk_resource.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   222    119.0 MiB      0.0 MiB       @memory_profiler.profile
+   223                                 def dispatch_request(self, *args, **kwargs):
+   224                                     """
+   225                                     Overriding function from Flask-RESTful
+   226                                     """
+   227                                     # Taken from flask
+   228                                     # noinspection PyUnresolvedReferences
+   229    119.0 MiB      0.0 MiB           meth = getattr(self, self.method.lower(), None)
+   230    119.0 MiB      0.0 MiB           if meth is None and self.method == 'HEAD':
+   231                                         meth = getattr(self, 'get', None)
+   232    119.0 MiB      0.0 MiB           assert meth is not None, 'Unimplemented method %r' % self.method
+   233
+   234    119.0 MiB      0.0 MiB           for decorator in self.method_decorators:
+   235    119.0 MiB      0.0 MiB               if isinstance(decorator, tuple):
+   236    119.0 MiB      0.0 MiB                   if not '!' + self.method in decorator[1]:
+   237    119.0 MiB      0.0 MiB                       meth = decorator[0](meth)
+   238                                         else:
+   239    119.0 MiB      0.0 MiB                   meth = decorator(meth)
+   240
+   241    119.0 MiB      0.0 MiB           resp = meth(*args, **kwargs)
+   242
+   243    119.0 MiB      0.0 MiB           if isinstance(resp, Response):  # There may be a better way to test
+   244                                         return resp
+   245
+   246    119.0 MiB      0.0 MiB           representations = self.representations or {}
+   247
+   248                                     # noinspection PyUnresolvedReferences
+   249    119.0 MiB      0.0 MiB           for mediatype in self.mediatypes():
+   250    119.0 MiB      0.0 MiB               if mediatype in representations:
+   251                                             data, code, headers = unpack(resp)
+   252                                             resp = representations[mediatype](data, code, headers)
+   253                                             resp.headers['Content-Type'] = mediatype
+   254                                             return resp
+   255
+   256    119.0 MiB      0.0 MiB           return resp
+
+
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Request to '/v1/tickets' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Request to '/v1/tickets' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Settings CORS headers: MultiDict([])
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Settings CORS headers: MultiDict([])
+
+======================
+PUT http://localhost/v1/tickets
+====== HEADERS =======
+Authorization: Basic T1BFUkFUT1JfQW1hem9uQGdpZ3dhbGsuY29tOm1vbmtleXRlc3Q=
+Host: localhost
+Content-Length: 61
+Content-Type: application/json
+======================
+Resource --> TicketAPIResource
+url args --> {}
+====== ALL DATA ======
+{u'action': u'edit', u'time_estimate': 300, u'ticket_ids': [220]}
+=== Method Schemas ===
+PUT: None
+POST: _GeoSchema
+DELETE: None
+GET: None
+======= SEARCH =======
+limit  --> 20
+offset --> 0
+order  --> None ASC
+query  -->
+Filename: /Users/jessealdridge/Dropbox/gigwalk/apps/gigwalk_apps_platform_api/gigwalk_api_app/lib/gigwalk_resource.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   222    119.0 MiB      0.0 MiB       @memory_profiler.profile
+   223                                 def dispatch_request(self, *args, **kwargs):
+   224                                     """
+   225                                     Overriding function from Flask-RESTful
+   226                                     """
+   227                                     # Taken from flask
+   228                                     # noinspection PyUnresolvedReferences
+   229    119.0 MiB      0.0 MiB           meth = getattr(self, self.method.lower(), None)
+   230    119.0 MiB      0.0 MiB           if meth is None and self.method == 'HEAD':
+   231                                         meth = getattr(self, 'get', None)
+   232    119.0 MiB      0.0 MiB           assert meth is not None, 'Unimplemented method %r' % self.method
+   233
+   234    119.0 MiB      0.0 MiB           for decorator in self.method_decorators:
+   235    119.0 MiB      0.0 MiB               if isinstance(decorator, tuple):
+   236    119.0 MiB      0.0 MiB                   if not '!' + self.method in decorator[1]:
+   237    119.0 MiB      0.0 MiB                       meth = decorator[0](meth)
+   238                                         else:
+   239    119.0 MiB      0.0 MiB                   meth = decorator(meth)
+   240
+   241    119.0 MiB      0.0 MiB           resp = meth(*args, **kwargs)
+   242
+   243    119.0 MiB      0.0 MiB           if isinstance(resp, Response):  # There may be a better way to test
+   244                                         return resp
+   245
+   246    119.0 MiB      0.0 MiB           representations = self.representations or {}
+   247
+   248                                     # noinspection PyUnresolvedReferences
+   249    119.0 MiB      0.0 MiB           for mediatype in self.mediatypes():
+   250    119.0 MiB      0.0 MiB               if mediatype in representations:
+   251                                             data, code, headers = unpack(resp)
+   252                                             resp = representations[mediatype](data, code, headers)
+   253                                             resp.headers['Content-Type'] = mediatype
+   254                                             return resp
+   255
+   256    119.0 MiB      0.0 MiB           return resp
+
+
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Request to '/v1/tickets' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Request to '/v1/tickets' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Settings CORS headers: MultiDict([])
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Settings CORS headers: MultiDict([])
+
+======================
+PUT http://localhost/v1/tickets
+====== HEADERS =======
+Authorization: Basic U1VQRVJfQURNSU5fQW1hem9uQGdpZ3dhbGsuY29tOm1vbmtleXRlc3Q=
+Host: localhost
+Content-Length: 59
+Content-Type: application/json
+======================
+Resource --> TicketAPIResource
+url args --> {}
+====== ALL DATA ======
+{u'action': u'assign', u'customer_id': 1, u'ticket_ids': [220]}
+=== Method Schemas ===
+PUT: None
+POST: _GeoSchema
+DELETE: None
+GET: None
+======= SEARCH =======
+limit  --> 20
+offset --> 0
+order  --> None ASC
+query  -->
+Filename: /Users/jessealdridge/Dropbox/gigwalk/apps/gigwalk_apps_platform_api/gigwalk_api_app/lib/gigwalk_resource.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   222    119.0 MiB      0.0 MiB       @memory_profiler.profile
+   223                                 def dispatch_request(self, *args, **kwargs):
+   224                                     """
+   225                                     Overriding function from Flask-RESTful
+   226                                     """
+   227                                     # Taken from flask
+   228                                     # noinspection PyUnresolvedReferences
+   229    119.0 MiB      0.0 MiB           meth = getattr(self, self.method.lower(), None)
+   230    119.0 MiB      0.0 MiB           if meth is None and self.method == 'HEAD':
+   231                                         meth = getattr(self, 'get', None)
+   232    119.0 MiB      0.0 MiB           assert meth is not None, 'Unimplemented method %r' % self.method
+   233
+   234    119.0 MiB      0.0 MiB           for decorator in self.method_decorators:
+   235    119.0 MiB      0.0 MiB               if isinstance(decorator, tuple):
+   236    119.0 MiB      0.0 MiB                   if not '!' + self.method in decorator[1]:
+   237    119.0 MiB      0.0 MiB                       meth = decorator[0](meth)
+   238                                         else:
+   239    119.0 MiB      0.0 MiB                   meth = decorator(meth)
+   240
+   241    119.1 MiB      0.1 MiB           resp = meth(*args, **kwargs)
+   242
+   243    119.1 MiB      0.0 MiB           if isinstance(resp, Response):  # There may be a better way to test
+   244                                         return resp
+   245
+   246    119.1 MiB      0.0 MiB           representations = self.representations or {}
+   247
+   248                                     # noinspection PyUnresolvedReferences
+   249    119.1 MiB      0.0 MiB           for mediatype in self.mediatypes():
+   250    119.1 MiB      0.0 MiB               if mediatype in representations:
+   251                                             data, code, headers = unpack(resp)
+   252                                             resp = representations[mediatype](data, code, headers)
+   253                                             resp.headers['Content-Type'] = mediatype
+   254                                             return resp
+   255
+   256    119.1 MiB      0.0 MiB           return resp
+
+
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Request to '/v1/tickets' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Request to '/v1/tickets' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Settings CORS headers: MultiDict([])
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Settings CORS headers: MultiDict([])
+
+======================
+PUT http://localhost/v1/tickets
+====== HEADERS =======
+Authorization: Basic U1VQRVJfQURNSU5fQW1hem9uQGdpZ3dhbGsuY29tOm1vbmtleXRlc3Q=
+Host: localhost
+Content-Length: 61
+Content-Type: application/json
+======================
+Resource --> TicketAPIResource
+url args --> {}
+====== ALL DATA ======
+{u'action': u'unassign', u'customer_id': 1, u'ticket_ids': [220]}
+=== Method Schemas ===
+PUT: None
+POST: _GeoSchema
+DELETE: None
+GET: None
+======= SEARCH =======
+limit  --> 20
+offset --> 0
+order  --> None ASC
+query  -->
+Filename: /Users/jessealdridge/Dropbox/gigwalk/apps/gigwalk_apps_platform_api/gigwalk_api_app/lib/gigwalk_resource.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   222    119.1 MiB      0.0 MiB       @memory_profiler.profile
+   223                                 def dispatch_request(self, *args, **kwargs):
+   224                                     """
+   225                                     Overriding function from Flask-RESTful
+   226                                     """
+   227                                     # Taken from flask
+   228                                     # noinspection PyUnresolvedReferences
+   229    119.1 MiB      0.0 MiB           meth = getattr(self, self.method.lower(), None)
+   230    119.1 MiB      0.0 MiB           if meth is None and self.method == 'HEAD':
+   231                                         meth = getattr(self, 'get', None)
+   232    119.1 MiB      0.0 MiB           assert meth is not None, 'Unimplemented method %r' % self.method
+   233
+   234    119.1 MiB      0.0 MiB           for decorator in self.method_decorators:
+   235    119.1 MiB      0.0 MiB               if isinstance(decorator, tuple):
+   236    119.1 MiB      0.0 MiB                   if not '!' + self.method in decorator[1]:
+   237    119.1 MiB      0.0 MiB                       meth = decorator[0](meth)
+   238                                         else:
+   239    119.1 MiB      0.0 MiB                   meth = decorator(meth)
+   240
+   241    119.4 MiB      0.4 MiB           resp = meth(*args, **kwargs)
+   242
+   243    119.4 MiB      0.0 MiB           if isinstance(resp, Response):  # There may be a better way to test
+   244                                         return resp
+   245
+   246    119.4 MiB      0.0 MiB           representations = self.representations or {}
+   247
+   248                                     # noinspection PyUnresolvedReferences
+   249    119.4 MiB      0.0 MiB           for mediatype in self.mediatypes():
+   250    119.4 MiB      0.0 MiB               if mediatype in representations:
+   251                                             data, code, headers = unpack(resp)
+   252                                             resp = representations[mediatype](data, code, headers)
+   253                                             resp.headers['Content-Type'] = mediatype
+   254                                             return resp
+   255
+   256    119.4 MiB      0.0 MiB           return resp
+
+
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Request to '/v1/tickets' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Request to '/v1/tickets' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Settings CORS headers: MultiDict([])
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Settings CORS headers: MultiDict([])
+
+======================
+PUT http://localhost/v1/tickets
+====== HEADERS =======
+Authorization: Basic V09SS0VSX0FtYXpvbkBnaWd3YWxrLmNvbTptb25rZXl0ZXN0
+Host: localhost
+Content-Length: 40
+Content-Type: application/json
+======================
+Resource --> TicketAPIResource
+url args --> {}
+====== ALL DATA ======
+{u'action': u'optin', u'ticket_ids': [220]}
+=== Method Schemas ===
+PUT: None
+POST: _GeoSchema
+DELETE: None
+GET: None
+======= SEARCH =======
+limit  --> 20
+offset --> 0
+order  --> None ASC
+query  -->
+Filename: /Users/jessealdridge/Dropbox/gigwalk/apps/gigwalk_apps_platform_api/gigwalk_api_app/lib/gigwalk_resource.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   222    119.4 MiB      0.0 MiB       @memory_profiler.profile
+   223                                 def dispatch_request(self, *args, **kwargs):
+   224                                     """
+   225                                     Overriding function from Flask-RESTful
+   226                                     """
+   227                                     # Taken from flask
+   228                                     # noinspection PyUnresolvedReferences
+   229    119.4 MiB      0.0 MiB           meth = getattr(self, self.method.lower(), None)
+   230    119.4 MiB      0.0 MiB           if meth is None and self.method == 'HEAD':
+   231                                         meth = getattr(self, 'get', None)
+   232    119.4 MiB      0.0 MiB           assert meth is not None, 'Unimplemented method %r' % self.method
+   233
+   234    119.4 MiB      0.0 MiB           for decorator in self.method_decorators:
+   235    119.4 MiB      0.0 MiB               if isinstance(decorator, tuple):
+   236    119.4 MiB      0.0 MiB                   if not '!' + self.method in decorator[1]:
+   237    119.4 MiB      0.0 MiB                       meth = decorator[0](meth)
+   238                                         else:
+   239    119.4 MiB      0.0 MiB                   meth = decorator(meth)
+   240
+   241    119.7 MiB      0.3 MiB           resp = meth(*args, **kwargs)
+   242
+   243    119.7 MiB      0.0 MiB           if isinstance(resp, Response):  # There may be a better way to test
+   244                                         return resp
+   245
+   246    119.7 MiB      0.0 MiB           representations = self.representations or {}
+   247
+   248                                     # noinspection PyUnresolvedReferences
+   249    119.7 MiB      0.0 MiB           for mediatype in self.mediatypes():
+   250    119.7 MiB      0.0 MiB               if mediatype in representations:
+   251                                             data, code, headers = unpack(resp)
+   252                                             resp = representations[mediatype](data, code, headers)
+   253                                             resp.headers['Content-Type'] = mediatype
+   254                                             return resp
+   255
+   256    119.7 MiB      0.0 MiB           return resp
+
+
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Request to '/v1/tickets' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Request to '/v1/tickets' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Settings CORS headers: MultiDict([])
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Settings CORS headers: MultiDict([])
+PASSEDModels:  []
+
+tests/unit/gigwalk_api_app/tickets/controllers/test_ticket_controller.py::TestTicketController::test_approval
+======================
+PUT http://localhost/v1/tickets
+====== HEADERS =======
+Authorization: Basic U1VQRVJfQURNSU5fQW1hem9uQGdpZ3dhbGsuY29tOm1vbmtleXRlc3Q=
+Host: localhost
+Content-Length: 42
+Content-Type: application/json
+======================
+Resource --> TicketAPIResource
+url args --> {}
+====== ALL DATA ======
+{u'action': u'approve', u'ticket_ids': [233]}
+=== Method Schemas ===
+PUT: None
+POST: _GeoSchema
+DELETE: None
+GET: None
+======= SEARCH =======
+limit  --> 20
+offset --> 0
+order  --> None ASC
+query  -->
+Filename: /Users/jessealdridge/Dropbox/gigwalk/apps/gigwalk_apps_platform_api/gigwalk_api_app/lib/gigwalk_resource.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   222    119.8 MiB      0.0 MiB       @memory_profiler.profile
+   223                                 def dispatch_request(self, *args, **kwargs):
+   224                                     """
+   225                                     Overriding function from Flask-RESTful
+   226                                     """
+   227                                     # Taken from flask
+   228                                     # noinspection PyUnresolvedReferences
+   229    119.8 MiB      0.0 MiB           meth = getattr(self, self.method.lower(), None)
+   230    119.8 MiB      0.0 MiB           if meth is None and self.method == 'HEAD':
+   231                                         meth = getattr(self, 'get', None)
+   232    119.8 MiB      0.0 MiB           assert meth is not None, 'Unimplemented method %r' % self.method
+   233
+   234    119.8 MiB      0.0 MiB           for decorator in self.method_decorators:
+   235    119.8 MiB      0.0 MiB               if isinstance(decorator, tuple):
+   236    119.8 MiB      0.0 MiB                   if not '!' + self.method in decorator[1]:
+   237    119.8 MiB      0.0 MiB                       meth = decorator[0](meth)
+   238                                         else:
+   239    119.8 MiB      0.0 MiB                   meth = decorator(meth)
+   240
+   241    119.9 MiB      0.1 MiB           resp = meth(*args, **kwargs)
+   242
+   243    119.9 MiB      0.0 MiB           if isinstance(resp, Response):  # There may be a better way to test
+   244                                         return resp
+   245
+   246    119.9 MiB      0.0 MiB           representations = self.representations or {}
+   247
+   248                                     # noinspection PyUnresolvedReferences
+   249    119.9 MiB      0.0 MiB           for mediatype in self.mediatypes():
+   250    119.9 MiB      0.0 MiB               if mediatype in representations:
+   251                                             data, code, headers = unpack(resp)
+   252                                             resp = representations[mediatype](data, code, headers)
+   253                                             resp.headers['Content-Type'] = mediatype
+   254                                             return resp
+   255
+   256    119.9 MiB      0.0 MiB           return resp
+
+
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Request to '/v1/tickets' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Request to '/v1/tickets' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Settings CORS headers: MultiDict([])
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Settings CORS headers: MultiDict([])
+
+======================
+PUT http://localhost/v1/tickets
+====== HEADERS =======
+Authorization: Basic U1VQRVJfQURNSU5fQW1hem9uQGdpZ3dhbGsuY29tOm1vbmtleXRlc3Q=
+Host: localhost
+Content-Length: 42
+Content-Type: application/json
+======================
+Resource --> TicketAPIResource
+url args --> {}
+====== ALL DATA ======
+{u'action': u'approve', u'ticket_ids': [233]}
+=== Method Schemas ===
+PUT: None
+POST: _GeoSchema
+DELETE: None
+GET: None
+======= SEARCH =======
+limit  --> 20
+offset --> 0
+order  --> None ASC
+query  -->
+Filename: /Users/jessealdridge/Dropbox/gigwalk/apps/gigwalk_apps_platform_api/gigwalk_api_app/lib/gigwalk_resource.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   222    119.9 MiB      0.0 MiB       @memory_profiler.profile
+   223                                 def dispatch_request(self, *args, **kwargs):
+   224                                     """
+   225                                     Overriding function from Flask-RESTful
+   226                                     """
+   227                                     # Taken from flask
+   228                                     # noinspection PyUnresolvedReferences
+   229    119.9 MiB      0.0 MiB           meth = getattr(self, self.method.lower(), None)
+   230    119.9 MiB      0.0 MiB           if meth is None and self.method == 'HEAD':
+   231                                         meth = getattr(self, 'get', None)
+   232    119.9 MiB      0.0 MiB           assert meth is not None, 'Unimplemented method %r' % self.method
+   233
+   234    119.9 MiB      0.0 MiB           for decorator in self.method_decorators:
+   235    119.9 MiB      0.0 MiB               if isinstance(decorator, tuple):
+   236    119.9 MiB      0.0 MiB                   if not '!' + self.method in decorator[1]:
+   237    119.9 MiB      0.0 MiB                       meth = decorator[0](meth)
+   238                                         else:
+   239    119.9 MiB      0.0 MiB                   meth = decorator(meth)
+   240
+   241    119.9 MiB      0.0 MiB           resp = meth(*args, **kwargs)
+   242
+   243    119.9 MiB      0.0 MiB           if isinstance(resp, Response):  # There may be a better way to test
+   244                                         return resp
+   245
+   246    119.9 MiB      0.0 MiB           representations = self.representations or {}
+   247
+   248                                     # noinspection PyUnresolvedReferences
+   249    119.9 MiB      0.0 MiB           for mediatype in self.mediatypes():
+   250    119.9 MiB      0.0 MiB               if mediatype in representations:
+   251                                             data, code, headers = unpack(resp)
+   252                                             resp = representations[mediatype](data, code, headers)
+   253                                             resp.headers['Content-Type'] = mediatype
+   254                                             return resp
+   255
+   256    119.9 MiB      0.0 MiB           return resp
+
+
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Request to '/v1/tickets' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Request to '/v1/tickets' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Settings CORS headers: MultiDict([])
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Settings CORS headers: MultiDict([])
+
+======================
+PUT http://localhost/v1/tickets
+====== HEADERS =======
+Authorization: Basic U1VQRVJfQURNSU5fQW1hem9uQGdpZ3dhbGsuY29tOm1vbmtleXRlc3Q=
+Host: localhost
+Content-Length: 41
+Content-Type: application/json
+======================
+Resource --> TicketAPIResource
+url args --> {}
+====== ALL DATA ======
+{u'action': u'reject', u'ticket_ids': [233]}
+=== Method Schemas ===
+PUT: None
+POST: _GeoSchema
+DELETE: None
+GET: None
+======= SEARCH =======
+limit  --> 20
+offset --> 0
+order  --> None ASC
+query  -->
+Filename: /Users/jessealdridge/Dropbox/gigwalk/apps/gigwalk_apps_platform_api/gigwalk_api_app/lib/gigwalk_resource.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   222    119.9 MiB      0.0 MiB       @memory_profiler.profile
+   223                                 def dispatch_request(self, *args, **kwargs):
+   224                                     """
+   225                                     Overriding function from Flask-RESTful
+   226                                     """
+   227                                     # Taken from flask
+   228                                     # noinspection PyUnresolvedReferences
+   229    119.9 MiB      0.0 MiB           meth = getattr(self, self.method.lower(), None)
+   230    119.9 MiB      0.0 MiB           if meth is None and self.method == 'HEAD':
+   231                                         meth = getattr(self, 'get', None)
+   232    119.9 MiB      0.0 MiB           assert meth is not None, 'Unimplemented method %r' % self.method
+   233
+   234    119.9 MiB      0.0 MiB           for decorator in self.method_decorators:
+   235    119.9 MiB      0.0 MiB               if isinstance(decorator, tuple):
+   236    119.9 MiB      0.0 MiB                   if not '!' + self.method in decorator[1]:
+   237    119.9 MiB      0.0 MiB                       meth = decorator[0](meth)
+   238                                         else:
+   239    119.9 MiB      0.0 MiB                   meth = decorator(meth)
+   240
+   241    120.0 MiB      0.1 MiB           resp = meth(*args, **kwargs)
+   242
+   243    120.0 MiB      0.0 MiB           if isinstance(resp, Response):  # There may be a better way to test
+   244                                         return resp
+   245
+   246    120.0 MiB      0.0 MiB           representations = self.representations or {}
+   247
+   248                                     # noinspection PyUnresolvedReferences
+   249    120.0 MiB      0.0 MiB           for mediatype in self.mediatypes():
+   250    120.0 MiB      0.0 MiB               if mediatype in representations:
+   251                                             data, code, headers = unpack(resp)
+   252                                             resp = representations[mediatype](data, code, headers)
+   253                                             resp.headers['Content-Type'] = mediatype
+   254                                             return resp
+   255
+   256    120.0 MiB      0.0 MiB           return resp
+
+
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Request to '/v1/tickets' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Request to '/v1/tickets' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Settings CORS headers: MultiDict([])
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Settings CORS headers: MultiDict([])
+
+======================
+PUT http://localhost/v1/tickets
+====== HEADERS =======
+Authorization: Basic U1VQRVJfQURNSU5fQW1hem9uQGdpZ3dhbGsuY29tOm1vbmtleXRlc3Q=
+Host: localhost
+Content-Length: 41
+Content-Type: application/json
+======================
+Resource --> TicketAPIResource
+url args --> {}
+====== ALL DATA ======
+{u'action': u'reject', u'ticket_ids': [233]}
+=== Method Schemas ===
+PUT: None
+POST: _GeoSchema
+DELETE: None
+GET: None
+======= SEARCH =======
+limit  --> 20
+offset --> 0
+order  --> None ASC
+query  -->
+Filename: /Users/jessealdridge/Dropbox/gigwalk/apps/gigwalk_apps_platform_api/gigwalk_api_app/lib/gigwalk_resource.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   222    120.0 MiB      0.0 MiB       @memory_profiler.profile
+   223                                 def dispatch_request(self, *args, **kwargs):
+   224                                     """
+   225                                     Overriding function from Flask-RESTful
+   226                                     """
+   227                                     # Taken from flask
+   228                                     # noinspection PyUnresolvedReferences
+   229    120.0 MiB      0.0 MiB           meth = getattr(self, self.method.lower(), None)
+   230    120.0 MiB      0.0 MiB           if meth is None and self.method == 'HEAD':
+   231                                         meth = getattr(self, 'get', None)
+   232    120.0 MiB      0.0 MiB           assert meth is not None, 'Unimplemented method %r' % self.method
+   233
+   234    120.0 MiB      0.0 MiB           for decorator in self.method_decorators:
+   235    120.0 MiB      0.0 MiB               if isinstance(decorator, tuple):
+   236    120.0 MiB      0.0 MiB                   if not '!' + self.method in decorator[1]:
+   237    120.0 MiB      0.0 MiB                       meth = decorator[0](meth)
+   238                                         else:
+   239    120.0 MiB      0.0 MiB                   meth = decorator(meth)
+   240
+   241    120.0 MiB      0.0 MiB           resp = meth(*args, **kwargs)
+   242
+   243    120.0 MiB      0.0 MiB           if isinstance(resp, Response):  # There may be a better way to test
+   244                                         return resp
+   245
+   246    120.0 MiB      0.0 MiB           representations = self.representations or {}
+   247
+   248                                     # noinspection PyUnresolvedReferences
+   249    120.0 MiB      0.0 MiB           for mediatype in self.mediatypes():
+   250    120.0 MiB      0.0 MiB               if mediatype in representations:
+   251                                             data, code, headers = unpack(resp)
+   252                                             resp = representations[mediatype](data, code, headers)
+   253                                             resp.headers['Content-Type'] = mediatype
+   254                                             return resp
+   255
+   256    120.0 MiB      0.0 MiB           return resp
+
+
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Request to '/v1/tickets' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Request to '/v1/tickets' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Settings CORS headers: MultiDict([])
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Settings CORS headers: MultiDict([])
+
+======================
+PUT http://localhost/v1/tickets
+====== HEADERS =======
+Authorization: Basic U1VQRVJfQURNSU5fQW1hem9uQGdpZ3dhbGsuY29tOm1vbmtleXRlc3Q=
+Host: localhost
+Content-Length: 42
+Content-Type: application/json
+======================
+Resource --> TicketAPIResource
+url args --> {}
+====== ALL DATA ======
+{u'action': u'approve', u'ticket_ids': [233]}
+=== Method Schemas ===
+PUT: None
+POST: _GeoSchema
+DELETE: None
+GET: None
+======= SEARCH =======
+limit  --> 20
+offset --> 0
+order  --> None ASC
+query  -->
+INFO:tasks.ticket.update_gig_core_task:START
+Web service start - http://50.18.117.61/c/v1/recommendation/1/execute
+ERROR:tasks.ticket.update_gig_core_task:Unable to update gig on core due to: HTTP Error 401: Unauthorized
+INFO:tasks.ticket.update_gig_core_task:END
+Filename: /Users/jessealdridge/Dropbox/gigwalk/apps/gigwalk_apps_platform_api/gigwalk_api_app/lib/gigwalk_resource.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   222    120.0 MiB      0.0 MiB       @memory_profiler.profile
+   223                                 def dispatch_request(self, *args, **kwargs):
+   224                                     """
+   225                                     Overriding function from Flask-RESTful
+   226                                     """
+   227                                     # Taken from flask
+   228                                     # noinspection PyUnresolvedReferences
+   229    120.0 MiB      0.0 MiB           meth = getattr(self, self.method.lower(), None)
+   230    120.0 MiB      0.0 MiB           if meth is None and self.method == 'HEAD':
+   231                                         meth = getattr(self, 'get', None)
+   232    120.0 MiB      0.0 MiB           assert meth is not None, 'Unimplemented method %r' % self.method
+   233
+   234    120.0 MiB      0.0 MiB           for decorator in self.method_decorators:
+   235    120.0 MiB      0.0 MiB               if isinstance(decorator, tuple):
+   236    120.0 MiB      0.0 MiB                   if not '!' + self.method in decorator[1]:
+   237    120.0 MiB      0.0 MiB                       meth = decorator[0](meth)
+   238                                         else:
+   239    120.0 MiB      0.0 MiB                   meth = decorator(meth)
+   240
+   241    120.4 MiB      0.4 MiB           resp = meth(*args, **kwargs)
+   242
+   243    120.4 MiB      0.0 MiB           if isinstance(resp, Response):  # There may be a better way to test
+   244                                         return resp
+   245
+   246    120.4 MiB      0.0 MiB           representations = self.representations or {}
+   247
+   248                                     # noinspection PyUnresolvedReferences
+   249    120.4 MiB      0.0 MiB           for mediatype in self.mediatypes():
+   250    120.4 MiB      0.0 MiB               if mediatype in representations:
+   251                                             data, code, headers = unpack(resp)
+   252                                             resp = representations[mediatype](data, code, headers)
+   253                                             resp.headers['Content-Type'] = mediatype
+   254                                             return resp
+   255
+   256    120.4 MiB      0.0 MiB           return resp
+
+
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Request to '/v1/tickets' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Request to '/v1/tickets' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Settings CORS headers: MultiDict([])
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Settings CORS headers: MultiDict([])
+
+======================
+PUT http://localhost/v1/tickets
+====== HEADERS =======
+Authorization: Basic U1VQRVJfQURNSU5fQW1hem9uQGdpZ3dhbGsuY29tOm1vbmtleXRlc3Q=
+Host: localhost
+Content-Length: 42
+Content-Type: application/json
+======================
+Resource --> TicketAPIResource
+url args --> {}
+====== ALL DATA ======
+{u'action': u'approve', u'ticket_ids': [233]}
+=== Method Schemas ===
+PUT: None
+POST: _GeoSchema
+DELETE: None
+GET: None
+======= SEARCH =======
+limit  --> 20
+offset --> 0
+order  --> None ASC
+query  -->
+Filename: /Users/jessealdridge/Dropbox/gigwalk/apps/gigwalk_apps_platform_api/gigwalk_api_app/lib/gigwalk_resource.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   222    120.4 MiB      0.0 MiB       @memory_profiler.profile
+   223                                 def dispatch_request(self, *args, **kwargs):
+   224                                     """
+   225                                     Overriding function from Flask-RESTful
+   226                                     """
+   227                                     # Taken from flask
+   228                                     # noinspection PyUnresolvedReferences
+   229    120.4 MiB      0.0 MiB           meth = getattr(self, self.method.lower(), None)
+   230    120.4 MiB      0.0 MiB           if meth is None and self.method == 'HEAD':
+   231                                         meth = getattr(self, 'get', None)
+   232    120.4 MiB      0.0 MiB           assert meth is not None, 'Unimplemented method %r' % self.method
+   233
+   234    120.4 MiB      0.0 MiB           for decorator in self.method_decorators:
+   235    120.4 MiB      0.0 MiB               if isinstance(decorator, tuple):
+   236    120.4 MiB      0.0 MiB                   if not '!' + self.method in decorator[1]:
+   237    120.4 MiB      0.0 MiB                       meth = decorator[0](meth)
+   238                                         else:
+   239    120.4 MiB      0.0 MiB                   meth = decorator(meth)
+   240
+   241    120.6 MiB      0.1 MiB           resp = meth(*args, **kwargs)
+   242
+   243    120.6 MiB      0.0 MiB           if isinstance(resp, Response):  # There may be a better way to test
+   244                                         return resp
+   245
+   246    120.6 MiB      0.0 MiB           representations = self.representations or {}
+   247
+   248                                     # noinspection PyUnresolvedReferences
+   249    120.6 MiB      0.0 MiB           for mediatype in self.mediatypes():
+   250    120.6 MiB      0.0 MiB               if mediatype in representations:
+   251                                             data, code, headers = unpack(resp)
+   252                                             resp = representations[mediatype](data, code, headers)
+   253                                             resp.headers['Content-Type'] = mediatype
+   254                                             return resp
+   255
+   256    120.6 MiB      0.0 MiB           return resp
+
+
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Request to '/v1/tickets' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Request to '/v1/tickets' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Settings CORS headers: MultiDict([])
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Settings CORS headers: MultiDict([])
+
+======================
+PUT http://localhost/v1/tickets
+====== HEADERS =======
+Authorization: Basic U1VQRVJfQURNSU5fQW1hem9uQGdpZ3dhbGsuY29tOm1vbmtleXRlc3Q=
+Host: localhost
+Content-Length: 41
+Content-Type: application/json
+======================
+Resource --> TicketAPIResource
+url args --> {}
+====== ALL DATA ======
+{u'action': u'reject', u'ticket_ids': [233]}
+=== Method Schemas ===
+PUT: None
+POST: _GeoSchema
+DELETE: None
+GET: None
+======= SEARCH =======
+limit  --> 20
+offset --> 0
+order  --> None ASC
+query  -->
+INFO:tasks.ticket.update_gig_core_task:START
+Web service start - http://50.18.117.61/c/v1/assignment/None/reopen
+RequestID: bbf957cc-dd2c-11e6-bd15-acbc32b20a91
+-------------------------------
+Request failed: 401 :
+url: http://50.18.117.61/c/v1/assignment/None/reopen
+jsonString: None
+headers:
+None
+-------------------------------
+ERROR:tasks.ticket.update_gig_core_task:Unable to update gig on core due to: API_FAILURE
+INFO:tasks.ticket.update_gig_core_task:END
+Filename: /Users/jessealdridge/Dropbox/gigwalk/apps/gigwalk_apps_platform_api/gigwalk_api_app/lib/gigwalk_resource.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   222    120.6 MiB      0.0 MiB       @memory_profiler.profile
+   223                                 def dispatch_request(self, *args, **kwargs):
+   224                                     """
+   225                                     Overriding function from Flask-RESTful
+   226                                     """
+   227                                     # Taken from flask
+   228                                     # noinspection PyUnresolvedReferences
+   229    120.6 MiB      0.0 MiB           meth = getattr(self, self.method.lower(), None)
+   230    120.6 MiB      0.0 MiB           if meth is None and self.method == 'HEAD':
+   231                                         meth = getattr(self, 'get', None)
+   232    120.6 MiB      0.0 MiB           assert meth is not None, 'Unimplemented method %r' % self.method
+   233
+   234    120.6 MiB      0.0 MiB           for decorator in self.method_decorators:
+   235    120.6 MiB      0.0 MiB               if isinstance(decorator, tuple):
+   236    120.6 MiB      0.0 MiB                   if not '!' + self.method in decorator[1]:
+   237    120.6 MiB      0.0 MiB                       meth = decorator[0](meth)
+   238                                         else:
+   239    120.6 MiB      0.0 MiB                   meth = decorator(meth)
+   240
+   241    120.7 MiB      0.1 MiB           resp = meth(*args, **kwargs)
+   242
+   243    120.7 MiB      0.0 MiB           if isinstance(resp, Response):  # There may be a better way to test
+   244                                         return resp
+   245
+   246    120.7 MiB      0.0 MiB           representations = self.representations or {}
+   247
+   248                                     # noinspection PyUnresolvedReferences
+   249    120.7 MiB      0.0 MiB           for mediatype in self.mediatypes():
+   250    120.7 MiB      0.0 MiB               if mediatype in representations:
+   251                                             data, code, headers = unpack(resp)
+   252                                             resp = representations[mediatype](data, code, headers)
+   253                                             resp.headers['Content-Type'] = mediatype
+   254                                             return resp
+   255
+   256    120.7 MiB      0.0 MiB           return resp
+
+
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Request to '/v1/tickets' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Request to '/v1/tickets' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Settings CORS headers: MultiDict([])
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Settings CORS headers: MultiDict([])
+
+======================
+PUT http://localhost/v1/tickets
+====== HEADERS =======
+Authorization: Basic U1VQRVJfQURNSU5fQW1hem9uQGdpZ3dhbGsuY29tOm1vbmtleXRlc3Q=
+Host: localhost
+Content-Length: 41
+Content-Type: application/json
+======================
+Resource --> TicketAPIResource
+url args --> {}
+====== ALL DATA ======
+{u'action': u'reject', u'ticket_ids': [233]}
+=== Method Schemas ===
+PUT: None
+POST: _GeoSchema
+DELETE: None
+GET: None
+======= SEARCH =======
+limit  --> 20
+offset --> 0
+order  --> None ASC
+query  -->
+Filename: /Users/jessealdridge/Dropbox/gigwalk/apps/gigwalk_apps_platform_api/gigwalk_api_app/lib/gigwalk_resource.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   222    120.7 MiB      0.0 MiB       @memory_profiler.profile
+   223                                 def dispatch_request(self, *args, **kwargs):
+   224                                     """
+   225                                     Overriding function from Flask-RESTful
+   226                                     """
+   227                                     # Taken from flask
+   228                                     # noinspection PyUnresolvedReferences
+   229    120.7 MiB      0.0 MiB           meth = getattr(self, self.method.lower(), None)
+   230    120.7 MiB      0.0 MiB           if meth is None and self.method == 'HEAD':
+   231                                         meth = getattr(self, 'get', None)
+   232    120.7 MiB      0.0 MiB           assert meth is not None, 'Unimplemented method %r' % self.method
+   233
+   234    120.7 MiB      0.0 MiB           for decorator in self.method_decorators:
+   235    120.7 MiB      0.0 MiB               if isinstance(decorator, tuple):
+   236    120.7 MiB      0.0 MiB                   if not '!' + self.method in decorator[1]:
+   237    120.7 MiB      0.0 MiB                       meth = decorator[0](meth)
+   238                                         else:
+   239    120.7 MiB      0.0 MiB                   meth = decorator(meth)
+   240
+   241    120.8 MiB      0.2 MiB           resp = meth(*args, **kwargs)
+   242
+   243    120.8 MiB      0.0 MiB           if isinstance(resp, Response):  # There may be a better way to test
+   244                                         return resp
+   245
+   246    120.8 MiB      0.0 MiB           representations = self.representations or {}
+   247
+   248                                     # noinspection PyUnresolvedReferences
+   249    120.8 MiB      0.0 MiB           for mediatype in self.mediatypes():
+   250    120.8 MiB      0.0 MiB               if mediatype in representations:
+   251                                             data, code, headers = unpack(resp)
+   252                                             resp = representations[mediatype](data, code, headers)
+   253                                             resp.headers['Content-Type'] = mediatype
+   254                                             return resp
+   255
+   256    120.8 MiB      0.0 MiB           return resp
+
+
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Request to '/v1/tickets' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Request to '/v1/tickets' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Settings CORS headers: MultiDict([])
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Settings CORS headers: MultiDict([])
+
+======================
+PUT http://localhost/v1/tickets
+====== HEADERS =======
+Authorization: Basic U1VQRVJfQURNSU5fQW1hem9uQGdpZ3dhbGsuY29tOm1vbmtleXRlc3Q=
+Host: localhost
+Content-Length: 41
+Content-Type: application/json
+======================
+Resource --> TicketAPIResource
+url args --> {}
+====== ALL DATA ======
+{u'action': u'reject', u'ticket_ids': [233]}
+=== Method Schemas ===
+PUT: None
+POST: _GeoSchema
+DELETE: None
+GET: None
+======= SEARCH =======
+limit  --> 20
+offset --> 0
+order  --> None ASC
+query  -->
+Filename: /Users/jessealdridge/Dropbox/gigwalk/apps/gigwalk_apps_platform_api/gigwalk_api_app/lib/gigwalk_resource.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   222    120.8 MiB      0.0 MiB       @memory_profiler.profile
+   223                                 def dispatch_request(self, *args, **kwargs):
+   224                                     """
+   225                                     Overriding function from Flask-RESTful
+   226                                     """
+   227                                     # Taken from flask
+   228                                     # noinspection PyUnresolvedReferences
+   229    120.8 MiB      0.0 MiB           meth = getattr(self, self.method.lower(), None)
+   230    120.8 MiB      0.0 MiB           if meth is None and self.method == 'HEAD':
+   231                                         meth = getattr(self, 'get', None)
+   232    120.8 MiB      0.0 MiB           assert meth is not None, 'Unimplemented method %r' % self.method
+   233
+   234    120.8 MiB      0.0 MiB           for decorator in self.method_decorators:
+   235    120.8 MiB      0.0 MiB               if isinstance(decorator, tuple):
+   236    120.8 MiB      0.0 MiB                   if not '!' + self.method in decorator[1]:
+   237    120.8 MiB      0.0 MiB                       meth = decorator[0](meth)
+   238                                         else:
+   239    120.8 MiB      0.0 MiB                   meth = decorator(meth)
+   240
+   241    120.8 MiB      0.0 MiB           resp = meth(*args, **kwargs)
+   242
+   243    120.8 MiB      0.0 MiB           if isinstance(resp, Response):  # There may be a better way to test
+   244                                         return resp
+   245
+   246    120.8 MiB      0.0 MiB           representations = self.representations or {}
+   247
+   248                                     # noinspection PyUnresolvedReferences
+   249    120.8 MiB      0.0 MiB           for mediatype in self.mediatypes():
+   250    120.8 MiB      0.0 MiB               if mediatype in representations:
+   251                                             data, code, headers = unpack(resp)
+   252                                             resp = representations[mediatype](data, code, headers)
+   253                                             resp.headers['Content-Type'] = mediatype
+   254                                             return resp
+   255
+   256    120.8 MiB      0.0 MiB           return resp
+
+
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Request to '/v1/tickets' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Request to '/v1/tickets' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Settings CORS headers: MultiDict([])
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Settings CORS headers: MultiDict([])
+INFO:tasks.ticket.approve_grace_period_task:START
+INFO:tasks.ticket.approve_grace_period_task:END
+PASSEDModels:  []
+
+tests/unit/gigwalk_api_app/tickets/controllers/test_ticket_controller.py::TestTicketController::test_put_ticket_cancel
+======================
+PUT http://localhost/v1/tickets
+====== HEADERS =======
+Authorization: Basic U1VQRVJfQURNSU5fQW1hem9uQGdpZ3dhbGsuY29tOm1vbmtleXRlc3Q=
+Host: localhost
+Content-Length: 40
+Content-Type: application/json
+======================
+Resource --> TicketAPIResource
+url args --> {}
+====== ALL DATA ======
+{u'action': u'start', u'ticket_ids': [213]}
+=== Method Schemas ===
+PUT: None
+POST: _GeoSchema
+DELETE: None
+GET: None
+======= SEARCH =======
+limit  --> 20
+offset --> 0
+order  --> None ASC
+query  -->
+Filename: /Users/jessealdridge/Dropbox/gigwalk/apps/gigwalk_apps_platform_api/gigwalk_api_app/lib/gigwalk_resource.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   222    121.0 MiB      0.0 MiB       @memory_profiler.profile
+   223                                 def dispatch_request(self, *args, **kwargs):
+   224                                     """
+   225                                     Overriding function from Flask-RESTful
+   226                                     """
+   227                                     # Taken from flask
+   228                                     # noinspection PyUnresolvedReferences
+   229    121.0 MiB      0.0 MiB           meth = getattr(self, self.method.lower(), None)
+   230    121.0 MiB      0.0 MiB           if meth is None and self.method == 'HEAD':
+   231                                         meth = getattr(self, 'get', None)
+   232    121.0 MiB      0.0 MiB           assert meth is not None, 'Unimplemented method %r' % self.method
+   233
+   234    121.0 MiB      0.0 MiB           for decorator in self.method_decorators:
+   235    121.0 MiB      0.0 MiB               if isinstance(decorator, tuple):
+   236    121.0 MiB      0.0 MiB                   if not '!' + self.method in decorator[1]:
+   237    121.0 MiB      0.0 MiB                       meth = decorator[0](meth)
+   238                                         else:
+   239    121.0 MiB      0.0 MiB                   meth = decorator(meth)
+   240
+   241    121.0 MiB      0.0 MiB           resp = meth(*args, **kwargs)
+   242
+   243    121.0 MiB      0.0 MiB           if isinstance(resp, Response):  # There may be a better way to test
+   244                                         return resp
+   245
+   246    121.0 MiB      0.0 MiB           representations = self.representations or {}
+   247
+   248                                     # noinspection PyUnresolvedReferences
+   249    121.0 MiB      0.0 MiB           for mediatype in self.mediatypes():
+   250    121.0 MiB      0.0 MiB               if mediatype in representations:
+   251                                             data, code, headers = unpack(resp)
+   252                                             resp = representations[mediatype](data, code, headers)
+   253                                             resp.headers['Content-Type'] = mediatype
+   254                                             return resp
+   255
+   256    121.0 MiB      0.0 MiB           return resp
+
+
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Request to '/v1/tickets' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Request to '/v1/tickets' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Settings CORS headers: MultiDict([])
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Settings CORS headers: MultiDict([])
+
+======================
+PUT http://localhost/v1/tickets
+====== HEADERS =======
+Authorization: Basic T1BFUkFUT1JfQW1hem9uQGdpZ3dhbGsuY29tOm1vbmtleXRlc3Q=
+Host: localhost
+Content-Length: 41
+Content-Type: application/json
+======================
+Resource --> TicketAPIResource
+url args --> {}
+====== ALL DATA ======
+{u'action': u'cancel', u'ticket_ids': [213]}
+=== Method Schemas ===
+PUT: None
+POST: _GeoSchema
+DELETE: None
+GET: None
+======= SEARCH =======
+limit  --> 20
+offset --> 0
+order  --> None ASC
+query  -->
+Filename: /Users/jessealdridge/Dropbox/gigwalk/apps/gigwalk_apps_platform_api/gigwalk_api_app/lib/gigwalk_resource.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   222    121.0 MiB      0.0 MiB       @memory_profiler.profile
+   223                                 def dispatch_request(self, *args, **kwargs):
+   224                                     """
+   225                                     Overriding function from Flask-RESTful
+   226                                     """
+   227                                     # Taken from flask
+   228                                     # noinspection PyUnresolvedReferences
+   229    121.0 MiB      0.0 MiB           meth = getattr(self, self.method.lower(), None)
+   230    121.0 MiB      0.0 MiB           if meth is None and self.method == 'HEAD':
+   231                                         meth = getattr(self, 'get', None)
+   232    121.0 MiB      0.0 MiB           assert meth is not None, 'Unimplemented method %r' % self.method
+   233
+   234    121.0 MiB      0.0 MiB           for decorator in self.method_decorators:
+   235    121.0 MiB      0.0 MiB               if isinstance(decorator, tuple):
+   236    121.0 MiB      0.0 MiB                   if not '!' + self.method in decorator[1]:
+   237    121.0 MiB      0.0 MiB                       meth = decorator[0](meth)
+   238                                         else:
+   239    121.0 MiB      0.0 MiB                   meth = decorator(meth)
+   240
+   241    121.0 MiB      0.0 MiB           resp = meth(*args, **kwargs)
+   242
+   243    121.0 MiB      0.0 MiB           if isinstance(resp, Response):  # There may be a better way to test
+   244                                         return resp
+   245
+   246    121.0 MiB      0.0 MiB           representations = self.representations or {}
+   247
+   248                                     # noinspection PyUnresolvedReferences
+   249    121.0 MiB      0.0 MiB           for mediatype in self.mediatypes():
+   250    121.0 MiB      0.0 MiB               if mediatype in representations:
+   251                                             data, code, headers = unpack(resp)
+   252                                             resp = representations[mediatype](data, code, headers)
+   253                                             resp.headers['Content-Type'] = mediatype
+   254                                             return resp
+   255
+   256    121.0 MiB      0.0 MiB           return resp
+
+
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Request to '/v1/tickets' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Request to '/v1/tickets' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Settings CORS headers: MultiDict([])
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Settings CORS headers: MultiDict([])
+
+======================
+PUT http://localhost/v1/tickets
+====== HEADERS =======
+Authorization: Basic U1VQRVJfQURNSU5fQW1hem9uQGdpZ3dhbGsuY29tOm1vbmtleXRlc3Q=
+Host: localhost
+Content-Length: 41
+Content-Type: application/json
+======================
+Resource --> TicketAPIResource
+url args --> {}
+====== ALL DATA ======
+{u'action': u'cancel', u'ticket_ids': [213]}
+=== Method Schemas ===
+PUT: None
+POST: _GeoSchema
+DELETE: None
+GET: None
+======= SEARCH =======
+limit  --> 20
+offset --> 0
+order  --> None ASC
+query  -->
+Filename: /Users/jessealdridge/Dropbox/gigwalk/apps/gigwalk_apps_platform_api/gigwalk_api_app/lib/gigwalk_resource.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   222    121.0 MiB      0.0 MiB       @memory_profiler.profile
+   223                                 def dispatch_request(self, *args, **kwargs):
+   224                                     """
+   225                                     Overriding function from Flask-RESTful
+   226                                     """
+   227                                     # Taken from flask
+   228                                     # noinspection PyUnresolvedReferences
+   229    121.0 MiB      0.0 MiB           meth = getattr(self, self.method.lower(), None)
+   230    121.0 MiB      0.0 MiB           if meth is None and self.method == 'HEAD':
+   231                                         meth = getattr(self, 'get', None)
+   232    121.0 MiB      0.0 MiB           assert meth is not None, 'Unimplemented method %r' % self.method
+   233
+   234    121.0 MiB      0.0 MiB           for decorator in self.method_decorators:
+   235    121.0 MiB      0.0 MiB               if isinstance(decorator, tuple):
+   236    121.0 MiB      0.0 MiB                   if not '!' + self.method in decorator[1]:
+   237    121.0 MiB      0.0 MiB                       meth = decorator[0](meth)
+   238                                         else:
+   239    121.0 MiB      0.0 MiB                   meth = decorator(meth)
+   240
+   241    121.0 MiB      0.0 MiB           resp = meth(*args, **kwargs)
+   242
+   243    121.0 MiB      0.0 MiB           if isinstance(resp, Response):  # There may be a better way to test
+   244                                         return resp
+   245
+   246    121.0 MiB      0.0 MiB           representations = self.representations or {}
+   247
+   248                                     # noinspection PyUnresolvedReferences
+   249    121.0 MiB      0.0 MiB           for mediatype in self.mediatypes():
+   250    121.0 MiB      0.0 MiB               if mediatype in representations:
+   251                                             data, code, headers = unpack(resp)
+   252                                             resp = representations[mediatype](data, code, headers)
+   253                                             resp.headers['Content-Type'] = mediatype
+   254                                             return resp
+   255
+   256    121.0 MiB      0.0 MiB           return resp
+
+
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Request to '/v1/tickets' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Request to '/v1/tickets' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Settings CORS headers: MultiDict([])
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Settings CORS headers: MultiDict([])
+PASSEDModels:  []
+
+tests/unit/gigwalk_api_app/tickets/controllers/test_ticket_controller.py::TestTicketController::test_put_ticket_unassign
+======================
+PUT http://localhost/v1/tickets
+====== HEADERS =======
+Authorization: Basic U1VQRVJfQURNSU5fQW1hem9uQGdpZ3dhbGsuY29tOm1vbmtleXRlc3Q=
+Host: localhost
+Content-Length: 60
+Content-Type: application/json
+======================
+Resource --> TicketAPIResource
+url args --> {}
+====== ALL DATA ======
+{u'action': u'assign', u'customer_id': 14, u'ticket_ids': [234]}
+=== Method Schemas ===
+PUT: None
+POST: _GeoSchema
+DELETE: None
+GET: None
+======= SEARCH =======
+limit  --> 20
+offset --> 0
+order  --> None ASC
+query  -->
+Filename: /Users/jessealdridge/Dropbox/gigwalk/apps/gigwalk_apps_platform_api/gigwalk_api_app/lib/gigwalk_resource.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   222    121.0 MiB      0.0 MiB       @memory_profiler.profile
+   223                                 def dispatch_request(self, *args, **kwargs):
+   224                                     """
+   225                                     Overriding function from Flask-RESTful
+   226                                     """
+   227                                     # Taken from flask
+   228                                     # noinspection PyUnresolvedReferences
+   229    121.0 MiB      0.0 MiB           meth = getattr(self, self.method.lower(), None)
+   230    121.0 MiB      0.0 MiB           if meth is None and self.method == 'HEAD':
+   231                                         meth = getattr(self, 'get', None)
+   232    121.0 MiB      0.0 MiB           assert meth is not None, 'Unimplemented method %r' % self.method
+   233
+   234    121.0 MiB      0.0 MiB           for decorator in self.method_decorators:
+   235    121.0 MiB      0.0 MiB               if isinstance(decorator, tuple):
+   236    121.0 MiB      0.0 MiB                   if not '!' + self.method in decorator[1]:
+   237    121.0 MiB      0.0 MiB                       meth = decorator[0](meth)
+   238                                         else:
+   239    121.0 MiB      0.0 MiB                   meth = decorator(meth)
+   240
+   241    121.0 MiB      0.0 MiB           resp = meth(*args, **kwargs)
+   242
+   243    121.0 MiB      0.0 MiB           if isinstance(resp, Response):  # There may be a better way to test
+   244                                         return resp
+   245
+   246    121.0 MiB      0.0 MiB           representations = self.representations or {}
+   247
+   248                                     # noinspection PyUnresolvedReferences
+   249    121.0 MiB      0.0 MiB           for mediatype in self.mediatypes():
+   250    121.0 MiB      0.0 MiB               if mediatype in representations:
+   251                                             data, code, headers = unpack(resp)
+   252                                             resp = representations[mediatype](data, code, headers)
+   253                                             resp.headers['Content-Type'] = mediatype
+   254                                             return resp
+   255
+   256    121.0 MiB      0.0 MiB           return resp
+
+
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Request to '/v1/tickets' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Request to '/v1/tickets' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Settings CORS headers: MultiDict([])
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Settings CORS headers: MultiDict([])
+
+======================
+PUT http://localhost/v1/tickets
+====== HEADERS =======
+Authorization: Basic V09SS0VSX0FtYXpvbl8xQGdpZ3dhbGsuY29tOm1vbmtleXRlc3Q=
+Host: localhost
+Content-Length: 59
+Content-Type: application/json
+======================
+Resource --> TicketAPIResource
+url args --> {}
+====== ALL DATA ======
+{u'action': u'start', u'customer_id': 14, u'ticket_ids': [234]}
+=== Method Schemas ===
+PUT: None
+POST: _GeoSchema
+DELETE: None
+GET: None
+======= SEARCH =======
+limit  --> 20
+offset --> 0
+order  --> None ASC
+query  -->
+Filename: /Users/jessealdridge/Dropbox/gigwalk/apps/gigwalk_apps_platform_api/gigwalk_api_app/lib/gigwalk_resource.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   222    121.0 MiB      0.0 MiB       @memory_profiler.profile
+   223                                 def dispatch_request(self, *args, **kwargs):
+   224                                     """
+   225                                     Overriding function from Flask-RESTful
+   226                                     """
+   227                                     # Taken from flask
+   228                                     # noinspection PyUnresolvedReferences
+   229    121.0 MiB      0.0 MiB           meth = getattr(self, self.method.lower(), None)
+   230    121.0 MiB      0.0 MiB           if meth is None and self.method == 'HEAD':
+   231                                         meth = getattr(self, 'get', None)
+   232    121.0 MiB      0.0 MiB           assert meth is not None, 'Unimplemented method %r' % self.method
+   233
+   234    121.0 MiB      0.0 MiB           for decorator in self.method_decorators:
+   235    121.0 MiB      0.0 MiB               if isinstance(decorator, tuple):
+   236    121.0 MiB      0.0 MiB                   if not '!' + self.method in decorator[1]:
+   237    121.0 MiB      0.0 MiB                       meth = decorator[0](meth)
+   238                                         else:
+   239    121.0 MiB      0.0 MiB                   meth = decorator(meth)
+   240
+   241    121.0 MiB      0.0 MiB           resp = meth(*args, **kwargs)
+   242
+   243    121.0 MiB      0.0 MiB           if isinstance(resp, Response):  # There may be a better way to test
+   244                                         return resp
+   245
+   246    121.0 MiB      0.0 MiB           representations = self.representations or {}
+   247
+   248                                     # noinspection PyUnresolvedReferences
+   249    121.0 MiB      0.0 MiB           for mediatype in self.mediatypes():
+   250    121.0 MiB      0.0 MiB               if mediatype in representations:
+   251                                             data, code, headers = unpack(resp)
+   252                                             resp = representations[mediatype](data, code, headers)
+   253                                             resp.headers['Content-Type'] = mediatype
+   254                                             return resp
+   255
+   256    121.0 MiB      0.0 MiB           return resp
+
+
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Request to '/v1/tickets' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Request to '/v1/tickets' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Settings CORS headers: MultiDict([])
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Settings CORS headers: MultiDict([])
+
+======================
+POST http://localhost/v1/tickets/234/data_items
+====== HEADERS =======
+Authorization: Basic V09SS0VSX0FtYXpvbl8xQGdpZ3dhbGsuY29tOm1vbmtleXRlc3Q=
+Host: localhost
+Content-Length: 247
+Content-Type: application/json
+======================
+Resource --> TicketDataItemAPIResource
+url args --> {}
+====== ALL DATA ======
+{u'data_item_timestamp': 1484709491, u'data_item_latitude': u'32.2881789', u'data_item_value': [u'2017-02-01T00:00:00'], u'observation_target_id': 2, u'data_type_id': 15, u'data_item_longitude': u'-110.978106', u'template_id': 0, u'data_item_answered': True}
+=== Method Schemas ===
+PUT: None
+POST: ['TicketDataItemSchema']
+DELETE: None
+GET: None
+
+Filename: /Users/jessealdridge/Dropbox/gigwalk/apps/gigwalk_apps_platform_api/gigwalk_api_app/lib/gigwalk_resource.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   222    121.0 MiB      0.0 MiB       @memory_profiler.profile
+   223                                 def dispatch_request(self, *args, **kwargs):
+   224                                     """
+   225                                     Overriding function from Flask-RESTful
+   226                                     """
+   227                                     # Taken from flask
+   228                                     # noinspection PyUnresolvedReferences
+   229    121.0 MiB      0.0 MiB           meth = getattr(self, self.method.lower(), None)
+   230    121.0 MiB      0.0 MiB           if meth is None and self.method == 'HEAD':
+   231                                         meth = getattr(self, 'get', None)
+   232    121.0 MiB      0.0 MiB           assert meth is not None, 'Unimplemented method %r' % self.method
+   233
+   234    121.0 MiB      0.0 MiB           for decorator in self.method_decorators:
+   235    121.0 MiB      0.0 MiB               if isinstance(decorator, tuple):
+   236    121.0 MiB      0.0 MiB                   if not '!' + self.method in decorator[1]:
+   237    121.0 MiB      0.0 MiB                       meth = decorator[0](meth)
+   238                                         else:
+   239    121.0 MiB      0.0 MiB                   meth = decorator(meth)
+   240
+   241    121.0 MiB      0.0 MiB           resp = meth(*args, **kwargs)
+   242
+   243    121.0 MiB      0.0 MiB           if isinstance(resp, Response):  # There may be a better way to test
+   244                                         return resp
+   245
+   246    121.0 MiB      0.0 MiB           representations = self.representations or {}
+   247
+   248                                     # noinspection PyUnresolvedReferences
+   249    121.0 MiB      0.0 MiB           for mediatype in self.mediatypes():
+   250    121.0 MiB      0.0 MiB               if mediatype in representations:
+   251                                             data, code, headers = unpack(resp)
+   252                                             resp = representations[mediatype](data, code, headers)
+   253                                             resp.headers['Content-Type'] = mediatype
+   254                                             return resp
+   255
+   256    121.0 MiB      0.0 MiB           return resp
+
+
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+CORS have been already evaluated, skipping
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:CORS have been already evaluated, skipping
+
+======================
+PUT http://localhost/v1/tickets
+====== HEADERS =======
+Authorization: Basic U1VQRVJfQURNSU5fQW1hem9uQGdpZ3dhbGsuY29tOm1vbmtleXRlc3Q=
+Host: localhost
+Content-Length: 62
+Content-Type: application/json
+======================
+Resource --> TicketAPIResource
+url args --> {}
+====== ALL DATA ======
+{u'action': u'unassign', u'customer_id': u'', u'ticket_ids': [234]}
+=== Method Schemas ===
+PUT: None
+POST: _GeoSchema
+DELETE: None
+GET: None
+======= SEARCH =======
+limit  --> 20
+offset --> 0
+order  --> None ASC
+query  -->
+Filename: /Users/jessealdridge/Dropbox/gigwalk/apps/gigwalk_apps_platform_api/gigwalk_api_app/lib/gigwalk_resource.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   222    121.0 MiB      0.0 MiB       @memory_profiler.profile
+   223                                 def dispatch_request(self, *args, **kwargs):
+   224                                     """
+   225                                     Overriding function from Flask-RESTful
+   226                                     """
+   227                                     # Taken from flask
+   228                                     # noinspection PyUnresolvedReferences
+   229    121.0 MiB      0.0 MiB           meth = getattr(self, self.method.lower(), None)
+   230    121.0 MiB      0.0 MiB           if meth is None and self.method == 'HEAD':
+   231                                         meth = getattr(self, 'get', None)
+   232    121.0 MiB      0.0 MiB           assert meth is not None, 'Unimplemented method %r' % self.method
+   233
+   234    121.0 MiB      0.0 MiB           for decorator in self.method_decorators:
+   235    121.0 MiB      0.0 MiB               if isinstance(decorator, tuple):
+   236    121.0 MiB      0.0 MiB                   if not '!' + self.method in decorator[1]:
+   237    121.0 MiB      0.0 MiB                       meth = decorator[0](meth)
+   238                                         else:
+   239    121.0 MiB      0.0 MiB                   meth = decorator(meth)
+   240
+   241    121.0 MiB      0.0 MiB           resp = meth(*args, **kwargs)
+   242
+   243    121.0 MiB      0.0 MiB           if isinstance(resp, Response):  # There may be a better way to test
+   244                                         return resp
+   245
+   246    121.0 MiB      0.0 MiB           representations = self.representations or {}
+   247
+   248                                     # noinspection PyUnresolvedReferences
+   249    121.0 MiB      0.0 MiB           for mediatype in self.mediatypes():
+   250    121.0 MiB      0.0 MiB               if mediatype in representations:
+   251                                             data, code, headers = unpack(resp)
+   252                                             resp = representations[mediatype](data, code, headers)
+   253                                             resp.headers['Content-Type'] = mediatype
+   254                                             return resp
+   255
+   256    121.0 MiB      0.0 MiB           return resp
+
+
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Request to '/v1/tickets' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Request to '/v1/tickets' matches CORS resource '/*'. Using options: {'automatic_options': True, 'allow_headers': ['.*'], 'send_wildcard': False, 'intercept_exceptions': True, 'origins': ['.*'], 'vary_header': True, 'supports_credentials': False, 'resources': '/*', 'methods': 'DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT'}
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:The request did not contain an 'Origin' header. This means the browser or client did not request CORS, ensure the Origin Header is set.
+--------------------------------------------------------------------------------
+DEBUG in core [/Users/jessealdridge/venvs/gigwalk_back/lib/python2.7/site-packages/flask_cors/core.py:367]:
+Settings CORS headers: MultiDict([])
+--------------------------------------------------------------------------------
+DEBUG:gigwalk_api_app.cors:Settings CORS headers: MultiDict([])
+PASSEDModels:  []
+
+
+================================================================================================= 12 passed in 20.30 seconds ==================================================================================================
